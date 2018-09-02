@@ -8,9 +8,10 @@
 <meta name="renderer" content="webkit">
 <link href="./css/common.css" rel="stylesheet">
 <script src="../js/jquery.js"></script>
+<script src="../js/common.js"></script>
 <style>
 .header{}
-.banner{background: url(../image/background.png);
+.banner{background: url(./image/background.png);
 	background-size: cover;
     transition-property: all;
     transition-duration: 0.5s;
@@ -43,15 +44,11 @@
     text-align: center;
  }
 </style>
-
-<script>
-	if(window.top != window.self)top.location.href="./login.html";
-</script>
 </head>
 <body>
 	<div class="header">
 		<a  target="_blank" id="fir_header">
-			<img src="../image/logo.png" alt="" height="80px"/>
+			<img src="./image/logo.png" alt="" height="80px"/>
 		</a>
 	</div>
 	<div class="banner">
@@ -59,11 +56,11 @@
 			<ul id="login_info" class="login_ul">
 				<li style="font-family: Microsoft Yahei; font-size: 20px">自主学习系统</li>
 				<li>
-					<span class="intext userName_icon"></span>
+					<span class="userName_icon"></span>
 					<input id="account" name="name" placeholder="用户名" type="text" disableautocomplete="disableautocomplete" autofocus autocomplete="off" readonly onfocus="this.removeAttribute('readonly');">
 				</li>
 				<li>
-					<span class="intext passName_icon"></span>
+					<span class="passName_icon"></span>
 					<input id="password" name="password" placeholder="登录密码" class="txt_inp loginInp" type="password" onkeydown="if(event.keyCode==13){login();}" disableautocomplete="disableautocomplete" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');">
 				</li>
 				<li>
@@ -78,5 +75,21 @@
 	</div>
 	<div class="footer"></div>
 </body>
-
+<script>
+	if(window.top != window.self)top.location.href="./login.html";
+	function login(){
+		var account =$("#account").val();
+		var password =$("#password").val();
+		var rememberMe=false;
+		commitData("/login.api",{
+				account:account,
+				password:password,
+				rememberMe:rememberMe
+			},{success:function(data){
+				alert("chenggong");
+			}
+		});
+		
+	}
+</script>
 </html>

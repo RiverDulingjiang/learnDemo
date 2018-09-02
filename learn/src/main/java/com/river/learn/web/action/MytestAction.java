@@ -9,9 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.river.basic.Constant;
+import com.river.basic.ReponseBean;
 import com.river.datasource.DSIdentification;
 import com.river.learn.web.bean.DataSourceBean;
 import com.river.learn.web.mapper.DataSourceMapper;
+import com.river.rbac.bean.UserBean;
 
 @Controller
 @RequestMapping("/test")
@@ -45,6 +48,11 @@ public class MytestAction {
 	 @ResponseBody
 	 @RequiresPermissions("")
 	 public String rbac() {
-	       return "Hello World!";
+		 UserBean bean = new UserBean();
+		 bean.setAccount("zhangsan");
+		 ReponseBean<UserBean> resultBean = new ReponseBean<>();
+		 resultBean.setCode(Constant.RESULT_SUCCESS);
+		 resultBean.setData(bean);
+	     return new Gson().toJson(resultBean);
 	 }
 }

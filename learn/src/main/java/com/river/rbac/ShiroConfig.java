@@ -3,6 +3,8 @@ package com.river.rbac;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.sql.DataSource;
+
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -10,11 +12,27 @@ import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class ShiroConfig {
+public class ShiroConfig {	
+/*	//配置数据库的基本链接信息
+    @Bean(name = "rbacDataSource")
+    @ConfigurationProperties(prefix = "rbac.datasource")    //可以在application.properties中直接导入
+    public DataSource dataSource(){
+        return DataSourceBuilder.create().build();
+    }
+    @Bean
+    public SqlSessionFactoryBean sqlSessionFactory(@Qualifier("rbacDataSource") DataSource dataSource) {
+        SqlSessionFactoryBean bean=new SqlSessionFactoryBean();
+        bean.setDataSource(dataSource);
+        return bean;
+    }*/
     /**
      * 记住我：自动登录-1
      */
@@ -94,9 +112,9 @@ public class ShiroConfig {
         //<!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
         filterChainDefinitionMap.put("/user/user", "authc");
         // 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
-        filterFactoryBean.setLoginUrl("/user/login");
+        filterFactoryBean.setLoginUrl("/must/login.html");
         // 登录成功后要跳转的链接
-        filterFactoryBean.setSuccessUrl("/");
+        filterFactoryBean.setSuccessUrl("/must/home.html");
         //未授权界面;
         filterFactoryBean.setUnauthorizedUrl("/user/login");
         filterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);

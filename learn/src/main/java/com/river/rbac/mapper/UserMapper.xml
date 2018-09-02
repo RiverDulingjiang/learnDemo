@@ -3,10 +3,11 @@
 <mapper namespace="com.river.rbac.mapper.UserMapper">
 
 	<!-- 按条件查询 -->
-	<select id="get" resultType="com.river.rbac.bean.UserBean">
+	<select id="get" parameterType="com.river.rbac.bean.UserBean" resultType="com.river.rbac.bean.UserBean">
 		SELECT * FROM t_user WHERE 1=1
-		<if test="id != null || id !=''">AND id=#{id}</if>
-		<if test="name != null || name !=''">AND name=#{name}</if>
+		<if test="id != null and id !=''">AND id=#{id}</if>
+		<if test="account != null and account !=''">AND account=#{account}</if>
+		<if test="password != null and password !=''">AND password=#{password}</if>
 	</select>
 	<!-- 插入数据 -->
 	<insert id="post" parameterType="com.river.rbac.bean.UserBean">
