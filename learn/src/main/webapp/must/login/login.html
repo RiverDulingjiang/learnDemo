@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>登录界面</title>
+<link rel="icon" href="./favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="renderer" content="webkit">
+<link href="./css/common.css" rel="stylesheet">
+<script src="../js/jquery.js"></script>
+<style>
+.header{}
+.banner{background: url(../image/background.png);
+	background-size: cover;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in;
+    height: 400px;
+    width: 100%;
+    position: absolute;
+ }
+.login_card{
+	position: relative;
+	width: 300px;
+    height: 200px;
+    background-color: #1e888b;
+    border: 1px solid #5881c6;
+    opacity: 0.7;
+    margin-top: 14%;
+    margin-left: 70%;
+}
+/* .banner ul{position: absolute;
+    right: 10%;
+    padding-top: 20%;
+    text-align: center;
+ } */
+
+.banner li{
+	list-style-type: none;
+    margin-top: 10px;
+    width: 65%;
+    margin: 10px 25px;
+    text-align: center;
+ }
+</style>
+
+<script>
+	if(window.top != window.self)top.location.href="./login.html";
+</script>
+</head>
+<body>
+	<div class="header">
+		<a  target="_blank" id="fir_header">
+			<img src="../image/logo.png" alt="" height="80px"/>
+		</a>
+	</div>
+	<div class="banner">
+		<div class="login_card">
+			<ul id="login_info" class="login_ul">
+				<li style="font-family: Microsoft Yahei; font-size: 20px">自主学习系统</li>
+				<li>
+					<span class="intext userName_icon"></span>
+					<input id="account" name="name" placeholder="用户名" type="text" disableautocomplete="disableautocomplete" autofocus autocomplete="off" readonly onfocus="this.removeAttribute('readonly');">
+				</li>
+				<li>
+					<span class="intext passName_icon"></span>
+					<input id="password" name="password" placeholder="登录密码" class="txt_inp loginInp" type="password" onkeydown="if(event.keyCode==13){login();}" disableautocomplete="disableautocomplete" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');">
+				</li>
+				<li>
+					<span id="msg" style="color: red"></span>
+				</li>
+				<li class="average">
+					<span onclick="login();" id="login" class="commit">登录</span>
+				</li>
+			</ul>
+		</div>
+		<div style="clear: both"></div>
+	</div>
+	<div class="footer"></div>
+</body>
+
+</html>

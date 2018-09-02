@@ -15,11 +15,15 @@ public class UserBean {
 	/**
 	 * 用户名
 	 */
-	private String name;
+	private String account;
 	/**
 	 * 用户密码
 	 */
-	private String password;
+	private String password;	
+	/**
+	 * 记住我
+	 */
+	private Boolean doRememberMe;
 	/**
 	 * 用户角色
 	 */
@@ -30,11 +34,17 @@ public class UserBean {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getAccount() {
+		return account;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setAccount(String account) {
+		this.account = account;
+	}
+	public Boolean getDoRememberMe() {
+		return doRememberMe;
+	}
+	public void setDoRememberMe(Boolean doRememberMe) {
+		this.doRememberMe = doRememberMe;
 	}
 	public String getPassword() {
 		return password;

@@ -14,6 +14,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.transaction.PlatformTransactionManager;
 
+/**
+ * 工作流数据库配置文件
+ * @author Administrator
+ *
+ */
 @Configuration//声名为配置类，继承Activiti抽象配置类
 public class ActivitiConfig extends AbstractProcessEngineAutoConfiguration {
 	

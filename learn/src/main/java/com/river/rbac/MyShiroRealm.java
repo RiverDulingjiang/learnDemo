@@ -44,7 +44,7 @@ public class MyShiroRealm extends AuthorizingRealm{
 		    //通过username从数据库中查找 User对象，如果找到，没找到.
 		    //实际项目中，这里可以根据实际情况做缓存，如果不做，Shiro自己也是有时间间隔机制，2分钟内不会重复执行该方法
 		    UserBean bean= new UserBean();
-		    bean.setName(account);
+		    bean.setAccount(account);
 		    bean =userMapper.get(bean).get(0);	  
 		    if(bean == null){
 		        return null;
