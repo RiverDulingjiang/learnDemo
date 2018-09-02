@@ -9,12 +9,16 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.river.rbac.bean.PermissionBean;
 import com.river.rbac.bean.RoleBean;
 import com.river.rbac.bean.UserBean;
+import com.river.rbac.mapper.UserMapper;
 
 public class MyShiroRealm extends AuthorizingRealm{
+	@Autowired
+	private UserMapper userMapper;
 
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
@@ -37,21 +41,18 @@ public class MyShiroRealm extends AuthorizingRealm{
 		 System.out.println("MyShiroRealm.doGetAuthenticationInfo()");
 		    //获取用户的输入的账号。
 		    String account = (String)token.getPrincipal();
-		    System.out.println(token.getCredentials());
 		    //通过username从数据库中查找 User对象，如果找到，没找到.
 		    //实际项目中，这里可以根据实际情况做缓存，如果不做，Shiro自己也是有时间间隔机制，2分钟内不会重复执行该方法
-		    UserBean userInfo=null;
-		    try (SessionFactory factory = new SessionFactory();) {		    	 
-		    	userInfo = BaseDataService.getLoginUserInfo(factory, account);
-		    	SecurityUtils.getSubject().getSession().setAttribute(Constant.USER, userInfo);
-		    }	   
-		    System.out.println("----->>userInfo="+userInfo);
-		    if(userInfo == null){
+		    UserBean bean= new UserBean();
+		    bean.setName(account);
+		    bean =userMapper.get(bean).get(0);	  
+		    if(bean == null){
 		        return null;
 		    }
+		    SecurityUtils.getSubject().getSession().setAttribute(account, bean);
 		    SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
-		            userInfo, //用户名
-		            userInfo.getPassword(), //密码
+		            account, //用户名
+		            bean.getPassword(), //密码
 		            getName()  //realm name
 		    );
 		    return authenticationInfo;
