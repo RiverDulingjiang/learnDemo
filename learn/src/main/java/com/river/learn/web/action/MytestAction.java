@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
-import com.river.datasource.DBIdentifier;
+import com.river.datasource.DSIdentification;
 import com.river.learn.web.bean.DataSourceBean;
 import com.river.learn.web.mapper.DataSourceMapper;
 
@@ -36,7 +36,7 @@ public class MytestAction {
 	 @ResponseBody
 	 public String dataSource(String projectCode) {
 		 System.out.println("projectCode:---"+projectCode);
-		 DBIdentifier.setProjectCode(projectCode);
+		 DSIdentification.setIdentification(projectCode);
 		 List<DataSourceBean> bean = mapper.get();		
 		 return  new Gson().toJson(bean);
 	 }
