@@ -11,6 +11,7 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.river.basic.Constant;
 import com.river.rbac.bean.PermissionBean;
 import com.river.rbac.bean.RoleBean;
 import com.river.rbac.bean.UserBean;
@@ -49,7 +50,7 @@ public class MyShiroRealm extends AuthorizingRealm{
 		    if(bean == null){
 		        return null;
 		    }
-		    SecurityUtils.getSubject().getSession().setAttribute(account, bean);
+		    SecurityUtils.getSubject().getSession().setAttribute(Constant.LOGIN_USER_SESSION, bean);
 		    SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
 		            account, //用户名
 		            bean.getPassword(), //密码

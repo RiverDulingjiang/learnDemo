@@ -11,7 +11,10 @@ public class Constant {
 	 * 未登陆
 	 */
 	public static final Integer LOGIN_STATUS = 1000;
-	
+	/**
+	 * 登录人session
+	 */
+	public static final String LOGIN_USER_SESSION = "user_session";
 	/**
 	 * 请求成功
 	 */

@@ -59,6 +59,14 @@ public class DBProperties {
     		throw new NullPointerException("无数据库连接信息");
     	}     
     }
+    /**
+     * @Description: 获取活跃的数据库信息
+     * @date 2018年9月3日
+     * @return
+     */
+    public static Map<String, Properties> getDBmap(){
+    	return DBMap;
+    }
 	public static String getUrl(String identification) {
 		return DBMap.get(identification).getProperty(DBProperties.URL);
 	}

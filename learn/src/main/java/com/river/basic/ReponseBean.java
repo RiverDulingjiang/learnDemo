@@ -1,5 +1,7 @@
 package com.river.basic;
 
+import com.google.gson.Gson;
+
 /**
  * 响应数据包装实体类
  * @author Administrator
@@ -9,11 +11,11 @@ public class ReponseBean<T> {
 	/**
 	 * 返回状态
 	 */
-	private Integer code;
+	private Integer code = 0;
 	/**
 	 * 返回描述
 	 */
-	private String desc;
+	private String desc ="success";
 	/**
 	 * 返回数据
 	 */
@@ -35,5 +37,8 @@ public class ReponseBean<T> {
 	}
 	public void setData(T data) {
 		this.data = data;
+	}
+	public String toJson(){
+		return new Gson().toJson(this);
 	}
 }

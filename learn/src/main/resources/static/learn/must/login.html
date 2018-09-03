@@ -54,7 +54,7 @@
 	<div class="banner">
 		<div class="login_card">
 			<ul id="login_info" class="login_ul">
-				<li style="font-family: Microsoft Yahei; font-size: 20px">自主学习系统</li>
+				<li style="font-family: Microsoft Yahei; font-size: 20px">安全管理系统</li>
 				<li>
 					<span class="userName_icon"></span>
 					<input id="account" name="name" placeholder="用户名" type="text" disableautocomplete="disableautocomplete" autofocus autocomplete="off" readonly onfocus="this.removeAttribute('readonly');">
@@ -81,7 +81,7 @@
 		var account =$("#account").val();
 		var password =$("#password").val();
 		var rememberMe=false;
-		commitData("/login.api",{
+		commitData("/login.htm",{
 				account:account,
 				password:password,
 				rememberMe:rememberMe
