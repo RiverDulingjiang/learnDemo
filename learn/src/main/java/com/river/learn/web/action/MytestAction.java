@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.river.basic.Constant;
-import com.river.basic.ReponseBean;
+import com.river.basic.ResponseBean;
 import com.river.datasource.DSIdentification;
 import com.river.learn.web.bean.DataSourceBean;
 import com.river.learn.web.mapper.DataSourceMapper;
@@ -26,7 +26,9 @@ public class MytestAction {
 	 @RequestMapping("/home.htm")
 	 @ResponseBody
 	 public String home() {
-	       return "Hello World!";
+		 ResponseBean<String> bean = new ResponseBean<>();
+		 bean.setData("Hello World!");
+	       return bean.toJson();
 	 }
 	 
 	 @RequestMapping("/activiti.htm")
@@ -50,7 +52,7 @@ public class MytestAction {
 	 public String rbac() {
 		 UserBean bean = new UserBean();
 		 bean.setAccount("zhangsan");
-		 ReponseBean<UserBean> resultBean = new ReponseBean<>();
+		 ResponseBean<UserBean> resultBean = new ResponseBean<>();
 		 resultBean.setCode(Constant.RESULT_SUCCESS);
 		 resultBean.setData(bean);
 	     return new Gson().toJson(resultBean);

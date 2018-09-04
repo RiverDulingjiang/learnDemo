@@ -23,9 +23,7 @@
 	function testApi(){
 		commitData("/test/home.htm",{
 			},{success:function(data){
-				if(data.code==0){
-					$("#api").text(data);
-				}
+					$("#api").text(data.data);
 			}
 		});
 		

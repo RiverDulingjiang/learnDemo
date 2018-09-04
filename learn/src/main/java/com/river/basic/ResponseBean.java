@@ -7,7 +7,7 @@ import com.google.gson.Gson;
  * @author Administrator
  *
  */
-public class ReponseBean<T> {
+public class ResponseBean<T> {
 	/**
 	 * 返回状态
 	 */

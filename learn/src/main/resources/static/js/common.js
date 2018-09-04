@@ -26,14 +26,7 @@ function commitData(url, data, callbackfun, async, method, dataType) {
 		callbackfun.error = function(data) {
 			alert("错误");
 		};
-	} else {
-		var fun = callbackfun.error;
-		callbackfun.error = function(data) {
-			dial.close();
-			fun(data);
-		}
-	}
-
+	} 
 	jQuery.support.cors = true;
 	$.ajax({
 		url : url,
@@ -47,7 +40,7 @@ function commitData(url, data, callbackfun, async, method, dataType) {
 		},
 		traditional : true,
 		success : function(data) {
-			if (callbackfun.success) {
+			if(callbackfun.success) {
 				callbackfun.success(data);
 			}else{
 				if(data.code==1000){

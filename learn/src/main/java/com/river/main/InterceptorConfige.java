@@ -1,4 +1,4 @@
-package com.river.rbac;
+package com.river.main;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,27 +14,30 @@ import com.river.basic.Constant;
 
 
 /**
- * 登录拦截器
+ * API拦截处理器
  * @author River
  * @date 2018年9月3日
  */
-public class LoginInterceptor implements HandlerInterceptor{
+public class InterceptorConfige implements HandlerInterceptor{
 	
-	private static final Logger log = LoggerFactory.getLogger(LoginInterceptor.class);
+	/**
+	 * 日志记录
+	 */
+	private static final Logger log = LoggerFactory.getLogger(InterceptorConfige.class);
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		/*HttpServletRequest httpRequest=(HttpServletRequest)request;
+		HttpServletRequest httpRequest=(HttpServletRequest)request;
 		String strBackUrl = "http://" + request.getServerName() + ":"
 				+ request.getServerPort()
 				+ httpRequest.getContextPath()
 				+ httpRequest.getServletPath();
-		System.out.println("strBackUrl: " + strBackUrl);*/
+		log.info("请求接口地址："+strBackUrl);
 		//HttpSession session = request.getSession(true);
 		Session session = SecurityUtils.getSubject().getSession(false);
 		if(session.getAttribute(Constant.LOGIN_USER_SESSION)==null){
-			log.info("------:跳转到login页面！");
+			log.info("登录信息失效！转回登录界面");
 			response.sendRedirect(request.getContextPath()+"./index.htm");
 			return false;
 		}else{

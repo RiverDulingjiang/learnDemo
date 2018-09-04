@@ -1,12 +1,9 @@
 package com.river.main;
 
-import java.util.Properties;
-
 import org.springframework.boot.SpringApplicationRunListener;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
 
-import com.river.datasource.DBProperties;
 
 public class SpringbootRunListener implements SpringApplicationRunListener{
 

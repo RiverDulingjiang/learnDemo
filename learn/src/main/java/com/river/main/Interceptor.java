@@ -6,8 +6,6 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
-import com.river.rbac.LoginInterceptor;
-
 /**
  * 配置拦截器
  * @author River
@@ -30,7 +28,7 @@ public class Interceptor extends WebMvcConfigurationSupport{
 	 */
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-	    registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**/*.htm").excludePathPatterns("/**/login.htm","/cas.htm");
+	    registry.addInterceptor(new InterceptorConfige()).addPathPatterns("/**/*.htm").excludePathPatterns("/**/login.htm","/cas.htm");
 	   super.addInterceptors(registry);
 	}
 }

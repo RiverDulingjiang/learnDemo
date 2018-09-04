@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.river.basic.Constant;
-import com.river.basic.ReponseBean;
+import com.river.basic.ResponseBean;
 import com.river.datasource.DSIdentification;
 
 @Controller
@@ -28,7 +28,7 @@ public class AccessAction {
 	@RequestMapping("/login.htm")
 	@ResponseBody
     public String login(@RequestParam("account")String account,@RequestParam("password")String password,@RequestParam("rememberMe")Boolean rememberMe) {
-		ReponseBean<String> bean = new ReponseBean<>();
+		ResponseBean<String> bean = new ResponseBean<>();
 		DSIdentification.setIdentification("_common");
 		String error = null;
         Subject subject = SecurityUtils.getSubject();
