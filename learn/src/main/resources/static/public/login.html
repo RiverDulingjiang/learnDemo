@@ -86,7 +86,9 @@
 				password:password,
 				rememberMe:rememberMe
 			},{success:function(data){
-				alert("chenggong");
+				if(data.code==0){
+					top.location.href="../learn/home.html";
+				}
 			}
 		});
 		

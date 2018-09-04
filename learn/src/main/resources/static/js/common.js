@@ -51,7 +51,7 @@ function commitData(url, data, callbackfun, async, method, dataType) {
 				callbackfun.success(data);
 			}else{
 				if(data.code==1000){
-					top.location.href = "./login.html"
+					top.location.href = "./index.html"
 				}
 			}
 		},

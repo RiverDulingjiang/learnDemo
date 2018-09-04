@@ -22,18 +22,18 @@ public class ShiroConfig {
 		//<!--设置拦截器--顺序拦截-->
 		Map<String,String> filterChainDefinitionMap = new LinkedHashMap<String,String>();
 		//<!--anon:所有url都可以匿名访问-->
-		filterChainDefinitionMap.put("/learn/**", "anon");
+		filterChainDefinitionMap.put("/static/**", "anon");
 		filterChainDefinitionMap.put("/**/login.htm", "anon");
 
 		filterChainDefinitionMap.put("/logout", "logout");
 		
 		//<!--authc:所有url都必须认证通过才可以访问;一般将/**放在最为下边 -->
-		filterChainDefinitionMap.put("/**", "authc");
+		//filterChainDefinitionMap.put("/**", "authc");
 		
 		//<!--如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面 -->
-		shiroFilterFactoryBean.setLoginUrl("/learn/must/login.html");
+		shiroFilterFactoryBean.setLoginUrl("/must/login.html");
 		//<!--登录成功后要跳转的链接 -->
-		shiroFilterFactoryBean.setSuccessUrl("/learn/must/home.html");
+		shiroFilterFactoryBean.setSuccessUrl("/must/home.html");
 
 		//未授权界面;
 		shiroFilterFactoryBean.setUnauthorizedUrl("/403");

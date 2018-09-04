@@ -35,7 +35,7 @@ public class LoginInterceptor implements HandlerInterceptor{
 		Session session = SecurityUtils.getSubject().getSession(false);
 		if(session.getAttribute(Constant.LOGIN_USER_SESSION)==null){
 			log.info("------:跳转到login页面！");
-			response.sendRedirect(request.getContextPath()+"/learn/must/login.htm");
+			response.sendRedirect(request.getContextPath()+"./index.htm");
 			return false;
 		}else{
 			return true;

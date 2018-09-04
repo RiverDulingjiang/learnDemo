@@ -19,7 +19,11 @@ public class UserBean {
 	/**
 	 * 用户密码
 	 */
-	private String password;	
+	private String password;
+	/**
+	 * 用户状态
+	 */
+	private Integer status;
 	/**
 	 * 记住我
 	 */
@@ -58,6 +62,11 @@ public class UserBean {
 	public void setRoleBeans(List<RoleBean> roleBeans) {
 		this.roleBeans = roleBeans;
 	}
-	
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 	
 }
