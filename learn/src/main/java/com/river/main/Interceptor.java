@@ -15,7 +15,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 @ComponentScan(basePackageClasses = App.class, useDefaultFilters = true)
 public class Interceptor extends WebMvcConfigurationSupport{
 	/* 
-	 * 配置资源拦截器
+	 * 配置资源拦截器规则
 	 */
 	@Override
 	protected  void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -24,7 +24,7 @@ public class Interceptor extends WebMvcConfigurationSupport{
         super.addResourceHandlers(registry);
     }
 	/*
-	 * 配置API拦截器
+	 * 配置API拦截器规则
 	 */
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
