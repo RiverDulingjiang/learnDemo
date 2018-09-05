@@ -36,9 +36,9 @@ public class InterceptorConfige implements HandlerInterceptor{
 		log.info("请求接口地址："+strBackUrl);
 		//HttpSession session = request.getSession(true);
 		Session session = SecurityUtils.getSubject().getSession(false);
-		if(session.getAttribute(Constant.LOGIN_USER_SESSION)==null){
+		if(session ==null||session.getAttribute(Constant.LOGIN_USER_SESSION)==null){
 			log.info("登录信息失效！转回登录界面");
-			response.sendRedirect(request.getContextPath()+"./index.htm");
+			response.sendRedirect(request.getContextPath()+"../index.html");
 			return false;
 		}else{
 			return true;

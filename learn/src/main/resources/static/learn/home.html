@@ -14,12 +14,13 @@
 		<h5>Hello</h5>
 		<h3 id="api"></h3>
 	</div>
+	<input type="button" onclick="testApi()" value="simmit"></input>
 </body>
 <script>
 	if(window.top != window.self)top.location.href="./home.html";
-	$(function(){
+	/* $(function(){
 		testApi();
-	})
+	}) */
 	function testApi(){
 		commitData("/test/home.htm",{
 			},{success:function(data){

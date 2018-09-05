@@ -27,7 +27,6 @@ function commitData(url, data, callbackfun, async, method, dataType) {
 			alert("错误");
 		};
 	} 
-	jQuery.support.cors = true;
 	$.ajax({
 		url : url,
 		dataType : dataType,
