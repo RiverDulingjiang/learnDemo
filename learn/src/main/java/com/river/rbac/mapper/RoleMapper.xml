@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.river.rbac.mapper.RoleMapper">
+
+	<!-- 按条件查询数据 -->
+	<select id="get" parameterType="com.river.rbac.bean.RoleBean" resultType="com.river.rbac.bean.RoleBean">
+		SELECT * FROM t_role WHERE 1=1
+		<if test="id != null and id !=''">AND id=#{id}</if>
+		<if test="name != null and name !=''">AND name=#{name}</if>
+		<if test="idCard != null and idCard !=''">AND idCard=#{idCard}</if>
+		<if test="desc != null and desc !=''">AND desc=#{desc}</if>
+	</select>
+	<!-- 插入数据 -->
+	<insert id="post" parameterType="com.river.rbac.bean.RoleBean">
+		INSERT INTO t_role (id,name,idCard,desc)
+		VALUES (#{id},#{name},#{idCard},#{desc})
+	</insert>
+	<!-- 按用户角色关系表查询数据 -->
+	<select id="getRoles" parameterType="java.lang.String" resultType="com.river.rbac.bean.RoleBean">
+		SELECT a.* FROM t_role a
+		LEFT JOIN t_user_role b ON b.role =a.idCard
+		WHERE b.user =#{user}
+	</select>
+</mapper>

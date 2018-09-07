@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.river.rbac.mapper.PermissionMapper">
+
+	<!-- 按条件查询数据 -->
+	<select id="get" parameterType="com.river.rbac.bean.PermissionBean" resultType="com.river.rbac.bean.PermissionBean">
+		SELECT * FROM t_permission WHERE 1=1
+		<if test="id != null and id !=''">AND id=#{id}</if>
+		<if test="name != null and name !=''">AND name=#{name}</if>
+		<if test="idCard != null and idCard !=''">AND idCard=#{idCard}</if>
+		<if test="url != null and url !=''">AND url=#{url}</if>
+		<if test="action != null and action !=''">AND action=#{action}</if>
+	</select>
+	<!-- 插入数据 -->
+	<insert id="post" parameterType="com.river.rbac.bean.PermissionBean">
+		INSERT INTO t_permission (id,name,idCard,url,action)
+		VALUES (#{id},#{name},#{idCard},#{url},#{action})
+	</insert>
+	<!-- 按用户角色关系表查询数据 -->
+	<select id="getPermissions" parameterType="java.lang.String" resultType="com.river.rbac.bean.PermissionBean">
+		SELECT a.* FROM t_permission a
+		LEFT JOIN t_role_permission b ON b.permission =a.idCard
+		WHERE b.role =#{role}
+	</select>
+</mapper>

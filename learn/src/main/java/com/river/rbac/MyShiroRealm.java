@@ -17,35 +17,38 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.river.basic.Constant;
-import com.river.main.InterceptorConfige;
 import com.river.rbac.bean.PermissionBean;
 import com.river.rbac.bean.RoleBean;
 import com.river.rbac.bean.UserBean;
-import com.river.rbac.mapper.UserMapper;
+import com.river.rbac.service.ShiroService;
 
 public class MyShiroRealm extends AuthorizingRealm{
 	/**
 	 * 日志记录
 	 */
-	private static final Logger log = LoggerFactory.getLogger(InterceptorConfige.class);
+	private static final Logger log = LoggerFactory.getLogger(MyShiroRealm.class);
 	
 	@Autowired
-	private UserMapper userMapper;
+	private ShiroService shiroService;
 
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 	    SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
+	    log.info("开始验证权限--->");
 	    UserBean userInfo  = (UserBean)principals.getPrimaryPrincipal();
-	    //角色
+	    //角色容器
 	    StringBuilder builder = new StringBuilder();
 	    for(RoleBean role:userInfo.getRoleBeans()){
 	    	builder.append(role.getName()+",");
-	        authorizationInfo.addRole(role.getName());
-	        for(PermissionBean p:role.getPermisssionBeans()){	        	
-	            authorizationInfo.addStringPermission(p.getName());
+	    	//添加角色
+	        authorizationInfo.addRole(role.getIdCard());
+	        for(PermissionBean p:role.getPermisssionBeans()){
+	        	//添加权限
+	            authorizationInfo.addStringPermission(p.getIdCard());
 	        }
 	    }
-	    log.info("用户：<"+userInfo.getAccount()+">的权限为["+builder.substring(0, builder.length()-2)+"]");
+	    log.info("用户：<"+userInfo.getAccount()+">的角色为:"+authorizationInfo.getRoles());
+	    log.info("用户：<"+userInfo.getAccount()+">的权限为:"+authorizationInfo.getStringPermissions());
 	    return authorizationInfo;
 	}
 
@@ -58,7 +61,7 @@ public class MyShiroRealm extends AuthorizingRealm{
 		    //<!--这里可以根据实际情况做缓存,Shiro自己也是有时间间隔机制，2分钟内不会重复执行该方法-->
 		    UserBean bean= new UserBean();
 		    bean.setAccount(account);
-		    bean =userMapper.get(bean).get(0);	  
+		    bean =shiroService.getUser(account);	  
 		    if(bean == null){
 		    	throw new UnknownAccountException();
 		    }else{
@@ -69,7 +72,7 @@ public class MyShiroRealm extends AuthorizingRealm{
 		    		}else{
 		    			SecurityUtils.getSubject().getSession().setAttribute(Constant.LOGIN_USER_SESSION, bean);
 		    			SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
-					            account, //用户名
+					            bean, //用户对象，对应doGetAuthorizationInfo类的权限转换。
 					            bean.getPassword(), //密码
 					            getName()  //realm name
 					    );
@@ -79,8 +82,6 @@ public class MyShiroRealm extends AuthorizingRealm{
 		    		log.info("用户:<"+account+">密码错误！");
 		    		throw new IncorrectCredentialsException();
 		    	}			    
-		    }
-		    
+		    }		    
 	}
-
 }
