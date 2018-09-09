@@ -34,6 +34,7 @@ public class ShiroConfig {
 		//<!--设置拦截器--顺序拦截-->
 		Map<String,String> filterChainDefinitionMap = new LinkedHashMap<String,String>();
 		//<!--anon:所有url都可以匿名访问-->
+		filterChainDefinitionMap.put("/*.html", "anon");
 		filterChainDefinitionMap.put("/basic/**", "anon");
 		filterChainDefinitionMap.put("/learn/**", "anon");
 		filterChainDefinitionMap.put("/uiFrame/**", "anon");
