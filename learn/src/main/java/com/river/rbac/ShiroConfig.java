@@ -36,6 +36,7 @@ public class ShiroConfig {
 		//<!--anon:所有url都可以匿名访问-->
 		filterChainDefinitionMap.put("/basic/**", "anon");
 		filterChainDefinitionMap.put("/learn/**", "anon");
+		filterChainDefinitionMap.put("/uiFrame/**", "anon");
 		filterChainDefinitionMap.put("/**/login.htm", "anon");
 		filterChainDefinitionMap.put("/logout", "logout");		
 		//<!--authc:所有url都必须认证通过才可以访问;一般将/**放在最为下边 -->
