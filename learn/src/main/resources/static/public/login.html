@@ -30,12 +30,6 @@
     margin-top: 14%;
     margin-left: 70%;
 }
-/* .banner ul{position: absolute;
-    right: 10%;
-    padding-top: 20%;
-    text-align: center;
- } */
-
 .banner li{
 	list-style-type: none;
     margin-top: 10px;
@@ -43,6 +37,10 @@
     margin: 10px 25px;
     text-align: center;
  }
+.tip{
+	font-size: 10px;
+    color: red;
+}    
 </style>
 </head>
 <body>
@@ -66,6 +64,9 @@
 				<li>
 					<span id="msg" style="color: red"></span>
 				</li>
+				<li class="tip">
+					<span class="tip_text"></span>
+				</li>
 				<li class="average">
 					<span onclick="login();" id="login" class="commit">登录</span>
 				</li>
@@ -86,6 +87,9 @@
 				password:password,
 				rememberMe:rememberMe
 			},{success:function(data){
+				if(data.code==1){
+					$(".tip_text").text("提示："+data.desc);
+				}
 				if(data.code==0){
 					top.location.href="../learn/home.html";
 				}
