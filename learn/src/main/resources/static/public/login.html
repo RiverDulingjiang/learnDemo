@@ -6,19 +6,19 @@
 <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="renderer" content="webkit">
-<link href="./css/common.css" rel="stylesheet">
 <script src="../js/jquery.js"></script>
 <script src="../js/common.js"></script>
 <style>
 .header{}
-.banner{background: url(./image/background.png);
+.banner{
+	background: url(./image/background.png);
 	background-size: cover;
     transition-property: all;
     transition-duration: 0.5s;
     transition-timing-function: ease-in;
     height: 400px;
     width: 100%;
-    position: absolute;
+    position: relative;
  }
 .login_card{
 	position: relative;
@@ -27,8 +27,9 @@
     background-color: #1e888b;
     border: 1px solid #5881c6;
     opacity: 0.7;
-    margin-top: 14%;
-    margin-left: 70%;
+    bottom: 30px;
+    right: 15%;
+    position: absolute;
 }
 .banner li{
 	list-style-type: none;
@@ -40,7 +41,10 @@
 .tip{
 	font-size: 10px;
     color: red;
-}    
+}
+.average{
+	cursor: pointer;
+}   
 </style>
 </head>
 <body>
