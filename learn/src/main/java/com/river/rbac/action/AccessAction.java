@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.river.basic.Constant;
 import com.river.basic.ResponseBean;
@@ -55,18 +54,4 @@ public class AccessAction {
         	return bean.toJson();
         }
     }
-	
-	@RequestMapping("/403.htm")
-	public ModelAndView sludge() {
-		ModelAndView view = new ModelAndView("/403.html");
-		return view;
-	}
-	
-	 @RequestMapping("/home1.htm")
-	 @ResponseBody
-	 public ModelAndView home() {
-		 ModelAndView view = new ModelAndView("/403.html");
-			return view;
-	 }
-
 }

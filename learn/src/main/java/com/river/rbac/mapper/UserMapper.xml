@@ -14,4 +14,12 @@
 		INSERT INTO r_user (id,name,password)
 		VALUES (#{id},#{name},#{password})
 	</insert>
+	<!-- 更新数据 -->
+	<update id="put" parameterType="com.river.rbac.bean.UserBean">
+		UPDATE r_user SET(name,password) VALUES (#{name},#{password}) WHERE id=#{id}
+	</update>
+	<!-- 删除数据 -->
+	<delete id="delete" parameterType="java.lang.String">
+		DELETE FROM r_user WHERE id=#{id}
+	</delete>
 </mapper>

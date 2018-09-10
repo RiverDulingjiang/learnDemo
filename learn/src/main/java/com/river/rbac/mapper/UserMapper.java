@@ -2,6 +2,8 @@ package com.river.rbac.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.river.rbac.bean.UserBean;
 
 /**
@@ -23,4 +25,16 @@ public interface UserMapper {
 	 * @return
 	 */
 	public List<UserBean> get(UserBean bean);
+	/**
+	 * @Description: 修改用户
+	 * @date 2018年9月10日
+	 * @param bean
+	 */
+	public void put(UserBean bean);
+	/**
+	 * @Description: 删除用户
+	 * @date 2018年9月10日
+	 * @param id
+	 */
+	public void delete(@Param("id")String id);
 }
