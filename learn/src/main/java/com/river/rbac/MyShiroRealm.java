@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.river.basic.Constant;
+import com.river.datasource.DSIdentification;
 import com.river.rbac.bean.PermissionBean;
 import com.river.rbac.bean.RoleBean;
 import com.river.rbac.bean.UserBean;
@@ -61,6 +62,7 @@ public class MyShiroRealm extends AuthorizingRealm{
 		    //<!--这里可以根据实际情况做缓存,Shiro自己也是有时间间隔机制，2分钟内不会重复执行该方法-->
 		    UserBean bean= new UserBean();
 		    bean.setAccount(account);
+		    DSIdentification.setIdentification("db_rbac");
 		    bean =shiroService.getUser(account);	  
 		    if(bean == null){
 		    	throw new UnknownAccountException();

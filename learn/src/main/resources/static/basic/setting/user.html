@@ -2,12 +2,29 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>安全管理系统</title>
-  <link rel="stylesheet" href="../uiFrame/layui/css/layui.css"  media="all">
-  <script src="../uiFrame/layui/layui.js" charset="utf-8"></script>
+  <title>用户列表</title>
+  <link rel="stylesheet" href="../../uiFrame/layui/css/layui.css" media="all">
+  <script src="../../uiFrame/layui/layui.js"></script>
 </head>
 <body>
-	<div>Hello</div>
+<table id="table_user" lay-filter="test"></table>
 </body>
-<html>
+<script>
+layui.use('table', function(){
+  var table = layui.table; 
+  //第一个实例
+  table.render({
+    elem: '#table_user',
+    height: 312,
+    url: '/api/rbac/user', //数据接口
+    page: true, //开启分页
+    cols: [[ //表头
+      {field: 'id', title: 'ID', width:50, sort: true, fixed: 'left'},
+      {field: 'account', title: '用户名', width:150, sort: true},
+      {field: 'password', title: '密码', width:150}
+    ]]
+  });
+  
+});
+</script>
+</html>

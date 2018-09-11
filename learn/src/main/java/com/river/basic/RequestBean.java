@@ -5,6 +5,6 @@ package com.river.basic;
  * @author Administrator
  *
  */
-public class RequestBean {
-
+public class RequestBean{
+	
 }

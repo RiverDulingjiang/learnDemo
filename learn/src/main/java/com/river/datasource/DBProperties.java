@@ -16,6 +16,9 @@ public class DBProperties {
 	public static String DRVIER_CLASS_NAME="driverClassName";
 	
 	
+	/**
+	 * 存储所有的数据源信息，永远有效！
+	 */
 	private static Map<String, Properties> DBMap = new HashMap<String, Properties>();
 	
     private static DBProperties instance = new DBProperties();

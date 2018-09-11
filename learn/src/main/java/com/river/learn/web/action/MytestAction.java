@@ -19,7 +19,7 @@ import com.river.learn.web.mapper.DataSourceMapper;
 import com.river.rbac.bean.UserBean;
 
 @Controller
-@RequestMapping("/test")
+@RequestMapping("/api/test")
 public class MytestAction {
 	
 	 @Autowired

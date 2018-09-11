@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.session.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +39,10 @@ public class InterceptorConfige implements HandlerInterceptor{
 		Session session = SecurityUtils.getSubject().getSession(false);
 		if(session ==null||session.getAttribute(Constant.LOGIN_USER_SESSION)==null){
 			log.info("登录信息失效！转回登录界面");
-			response.sendRedirect(request.getContextPath()+"../index.html");
+			//抛出异常,不可行
+			//throw new UnknownAccountException();
+			response.sendRedirect(request.getContextPath()+"/index.html");
+			//response.sendRedirect("/api/loginPage");
 			return false;
 		}else{
 			return true;

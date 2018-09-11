@@ -10,13 +10,26 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.river.basic.Constant;
 import com.river.basic.ResponseBean;
 import com.river.datasource.DSIdentification;
 
 @Controller
+@RequestMapping("/api/")
 public class AccessAction {
+	
+	/**
+	 * @Description: 跳转登陆页面
+	 * @date 2018年9月11日
+	 * @return
+	 */
+	@RequestMapping("/loginPage")
+	public ModelAndView loginPage() {
+		ModelAndView view = new ModelAndView("/403.html");
+	    return view;
+	}
 	/**
 	 * @Description: 登录操作
 	 * @date 2018年9月3日

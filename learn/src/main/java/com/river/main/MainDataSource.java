@@ -1,13 +1,19 @@
 package com.river.main;
 
+import java.util.List;
 import java.util.Properties;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import com.river.datasource.DBBean;
+import com.river.datasource.DBGroup;
 import com.river.datasource.DBProperties;
+import com.river.rbac.MyShiroRealm;
 
 /**
  * 项目启动后立即执行该方法：优先级为一
@@ -18,14 +24,18 @@ import com.river.datasource.DBProperties;
 @Order(value = 1)
 public class MainDataSource implements ApplicationRunner {
 
+	private static final Logger log = LoggerFactory.getLogger(MainDataSource.class);
+	
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		Properties p = new Properties();
-		p.setProperty(DBProperties.URL, "jdbc:mysql://localhost:3306/db_learn_rbac?useUnicode=true&characterEncoding=utf8");
-		p.setProperty(DBProperties.USER_NAME, "root");
-		p.setProperty(DBProperties.PASSWORD, "123");
-		p.setProperty(DBProperties.DRVIER_CLASS_NAME, "com.mysql.jdbc.Driver");
-		DBProperties.setDBmap("_common", p);		
+		//项目启动立即启动数据库信息
+		List<DBBean> list =DBGroup.getDBBeans();
+		DBGroup.putDataSource(list);
+		StringBuilder builder = new StringBuilder();
+		for(int i=0;i<list.size();i++){
+			builder.append(list.get(i).getFlag());
+		}
+		log.info("数据源"+builder+"已启动");		
 	}
 
 }

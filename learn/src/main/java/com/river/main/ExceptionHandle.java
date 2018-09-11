@@ -1,6 +1,7 @@
 package com.river.main;
 
 
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -21,17 +22,24 @@ public class ExceptionHandle {
     //拦截未授权页面
     @ExceptionHandler(value = UnauthorizedException.class)
     @ResponseBody
-    public ResponseBean<String> handleException(UnauthorizedException e) {
+    public ResponseBean<String> unauthorizedException(UnauthorizedException e) {
     	ResponseBean<String> bean = new ResponseBean<>();
     	bean.setCode(Constant.RESULT_NO_ACCESS);
     	bean.setDesc("无接口权限");
         return bean;
     }
     @ExceptionHandler(AuthorizationException.class)
-    public ResponseBean<String> handleException2(AuthorizationException e) {
+    public ResponseBean<String> authorizationException(AuthorizationException e) {
     	ResponseBean<String> bean = new ResponseBean<>();
     	bean.setCode(Constant.RESULT_NO_ACCESS);
     	bean.setDesc("无接口权限");
+        return bean;
+    }
+    @ExceptionHandler(UnknownAccountException.class)
+    public ResponseBean<String> unknownAccountException(UnknownAccountException e) {
+    	ResponseBean<String> bean = new ResponseBean<>();
+    	bean.setCode(Constant.RESULT_NO_ACCESS);
+    	bean.setDesc("未登录");
         return bean;
     }
 }
