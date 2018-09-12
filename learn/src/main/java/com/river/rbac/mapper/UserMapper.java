@@ -37,4 +37,12 @@ public interface UserMapper {
 	 * @param id
 	 */
 	public void delete(@Param("id")String id);
+	
+	/**
+	 * @Description: 登录验证
+	 * @date 2018年9月12日
+	 * @param bean
+	 * @return
+	 */
+	public UserBean login(@Param("account")String id,@Param("status")Integer status);
 }

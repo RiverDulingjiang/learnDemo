@@ -8,6 +8,11 @@
 		<if test="id != null and id !=''">AND id=#{id}</if>
 		<if test="account != null and account !=''">AND account=#{account}</if>
 		<if test="password != null and password !=''">AND password=#{password}</if>
+		<if test="status != null and status !=''">AND status=#{status}</if>
+	</select>
+	<!-- 登录验证查询 -->
+	<select id="login" resultType="com.river.rbac.bean.UserBean">
+		SELECT * FROM t_user WHERE account =#{account} AND status=#{status}
 	</select>
 	<!-- 插入数据 -->
 	<insert id="post" parameterType="com.river.rbac.bean.UserBean">

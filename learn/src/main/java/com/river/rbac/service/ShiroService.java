@@ -34,17 +34,16 @@ public class ShiroService {
 	 * @return
 	 */
 	public UserBean getUser(String account){
-		UserBean bean = new UserBean();
-		bean.setAccount(account);
-		List<UserBean> beans=userMapper.get(bean);
-		if(beans.size()==1){			
-			List<RoleBean> roleBeans =roleMapper.getRoles(beans.get(0).getAccount());
-			beans.get(0).setRoleBeans(roleBeans);
+		//0：关闭状态；1开启状态；100冻结状态
+		UserBean bean = userMapper.login(account, 1); 
+		if(bean!=null){			
+			List<RoleBean> roleBeans =roleMapper.getRoles(bean.getAccount());
+			bean.setRoleBeans(roleBeans);
 			for(RoleBean roleBean:roleBeans){
 				List<PermissionBean> permissionBeans = permissionMapper.getPermissions(roleBean.getIdCard());
 				roleBean.setPermisssionBeans(permissionBeans);
 			}
-			return beans.get(0);
+			return bean;
 		}else{
 			return null;
 		}
@@ -83,9 +82,7 @@ public class ShiroService {
 	 * @date 2018年9月10日
 	 * @param id
 	 */
-	public void updateUserById(String id) {
-		UserBean bean = new UserBean();
-		bean.setId(id);
+	public void updateUserById(UserBean bean) {
 		userMapper.put(bean);
 	}
 

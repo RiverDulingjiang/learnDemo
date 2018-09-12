@@ -2,7 +2,6 @@ package com.river.rbac.action;
 
 import java.util.List;
 
-import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +24,7 @@ import com.river.rbac.service.ShiroService;
  */
 @RestController
 @RequestMapping("/api/rbac")
-public class RbacAction {
+public class UserAction {
 	@Autowired
 	ShiroService shiroService;
 	
@@ -69,10 +68,10 @@ public class RbacAction {
 	 * @return
 	 */
 	@PutMapping(value = "/user/{id}")
-	public ResponseBean<?> putUserById(@PathVariable("id") String id){
+	public ResponseBean<?> putUserById(@PathVariable("id") String id,UserBean bean){
 		DSIdentification.setIdentification("db_rbac");
 		ResponseBean<UserBean> res = new ResponseBean<>();
-		shiroService.updateUserById(id);
+		shiroService.updateUserById(bean);
 		res.setCode(Constant.RESULT_SUCCESS);
 		res.setDesc("修改用户信息成功");
 		return res;
@@ -89,7 +88,7 @@ public class RbacAction {
 		ResponseBean<UserBean> res = new ResponseBean<>();
 		shiroService.deleteUserById(id);
 		res.setCode(Constant.RESULT_SUCCESS);
-		res.setDesc("修改用户信息成功");
+		res.setDesc("删除用户信息成功");
 		return res;
 	}
 	
@@ -105,7 +104,7 @@ public class RbacAction {
 		ResponseBean<UserBean> res = new ResponseBean<>();
 		shiroService.postUser(userBean);
 		res.setCode(Constant.RESULT_SUCCESS);
-		res.setDesc("修改用户信息成功");
+		res.setDesc("添加用户信息成功");
 		return res;
 	}
 }

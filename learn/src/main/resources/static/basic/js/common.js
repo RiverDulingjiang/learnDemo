@@ -1,5 +1,17 @@
 var root ="";
 
+function requestGet(url, data, callbackfun, async,dataType){
+	commitData(url,data,callbackfun,async,"get",dataType);
+}
+function requestPost(url, data, callbackfun, async,dataType){
+	commitData(url,data,callbackfun,async,"post",dataType);
+}
+function requestPut(url, data, callbackfun, async,dataType){
+	commitData(url,data,callbackfun,async,"put",dataType);
+}
+function requestDelete(url, data, callbackfun, async,dataType){
+	commitData(url,data,callbackfun,async,"delete",dataType);
+}
 /**
  * ajax调用
  * @param url 链接地址
