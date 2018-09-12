@@ -37,8 +37,10 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/*.html", "anon");
 		filterChainDefinitionMap.put("/basic/**", "anon");
 		filterChainDefinitionMap.put("/learn/**", "anon");
+		filterChainDefinitionMap.put("/public/**", "anon");
 		filterChainDefinitionMap.put("/uiFrame/**", "anon");
-		filterChainDefinitionMap.put("/**/login.htm", "anon");
+		//<!--放行登录请求-->
+		filterChainDefinitionMap.put("/**/login", "anon");
 		filterChainDefinitionMap.put("/logout", "logout");		
 		//<!--authc:所有url都必须认证通过才可以访问;一般将/**放在最为下边 -->
 		filterChainDefinitionMap.put("/**", "authc");

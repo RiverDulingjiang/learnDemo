@@ -38,7 +38,7 @@ public class AccessAction {
 	 * @param rememberMe
 	 * @return
 	 */
-	@RequestMapping("/login.htm")
+	@RequestMapping("/login")
 	@ResponseBody
     public String login(@RequestParam("account")String account,@RequestParam("password")String password,@RequestParam("rememberMe")Boolean rememberMe) {
 		ResponseBean<String> bean = new ResponseBean<>();

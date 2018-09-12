@@ -39,10 +39,7 @@ public class InterceptorConfige implements HandlerInterceptor{
 		Session session = SecurityUtils.getSubject().getSession(false);
 		if(session ==null||session.getAttribute(Constant.LOGIN_USER_SESSION)==null){
 			log.info("登录信息失效！转回登录界面");
-			//抛出异常,不可行
-			//throw new UnknownAccountException();
 			response.sendRedirect(request.getContextPath()+"/index.html");
-			//response.sendRedirect("/api/loginPage");
 			return false;
 		}else{
 			return true;
