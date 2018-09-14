@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -64,12 +65,13 @@ public class UserInfoAction {
 		return res;
 	}
 	@PostMapping(value = "/userInfo")
-	public ResponseBean<?> postUserInfoById(UserInfoBean bean){
+	public ResponseBean<?> postUserInfoById(@RequestBody UserInfoBean bean){
 		DSIdentification.setIdentification("db_rbac");
-		ResponseBean<UserBean> res = new ResponseBean<>();
-		userInfoService.postUserInfo(bean);
+		ResponseBean<String> res = new ResponseBean<>();
+		String id=userInfoService.postUserInfo(bean);
 		res.setCode(Constant.RESULT_SUCCESS);
 		res.setDesc("添加用户信息成功");
+		res.setData(id);
 		return res;
 	}
 }

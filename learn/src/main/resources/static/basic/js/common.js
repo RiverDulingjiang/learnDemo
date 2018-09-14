@@ -4,7 +4,8 @@ function requestGet(url, data, callbackfun, async,dataType){
 	commitData(url,data,callbackfun,async,"get",dataType);
 }
 function requestPost(url, data, callbackfun, async,dataType){
-	commitData(url,data,callbackfun,async,"post",dataType);
+	contentType="application/json;charset=utf-8"
+	postCommitData(url,data,callbackfun,async,"post",dataType,contentType);
 }
 function requestPut(url, data, callbackfun, async,dataType){
 	commitData(url,data,callbackfun,async,"put",dataType);
@@ -32,6 +33,34 @@ function commitData(url, data, callbackfun, async, method, dataType) {
 		type : method,
 		data : data,
 		async : async,
+		crossDomain : true,
+		headers : {"returntype" : "ajax/json"},
+		traditional : true,
+		success : function(data) {
+			if(callbackfun.success) {
+				callbackfun.success(data);
+			}else{
+				if(data.code==1000){
+					top.location.href = "./index.html"
+				}
+			}
+		},
+		error : callbackfun.error
+	});
+}
+//
+function postCommitData(url, data, callbackfun, async, method, dataType,contentType) {
+	if (method == null||method ==undefined) {method = "post";}
+	if (dataType == null||dataType ==undefined) {dataType = "json";}
+	if (async == undefined) {async = true;}
+	if (callbackfun.error == null) {callbackfun.error = function(data) {alert("错误");};} 
+	$.ajax({
+		url : url,
+		dataType : dataType,
+		type : method,
+		data : data,
+		async : async,
+		contentType:contentType,
 		crossDomain : true,
 		headers : {"returntype" : "ajax/json"},
 		traditional : true,

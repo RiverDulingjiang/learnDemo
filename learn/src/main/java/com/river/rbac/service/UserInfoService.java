@@ -51,9 +51,13 @@ public class UserInfoService {
 	 * @date 2018年9月12日
 	 * @param bean
 	 */
-	public void postUserInfo(UserInfoBean bean){
+	public String postUserInfo(UserInfoBean bean){
+		String id =Tools.randomUUID();
+		bean.setId(id);
 		bean.setCreateTime(Tools.dateToString(new Date()));
+		bean.setUpdateTime(Tools.dateToString(new Date()));
 		userInfoMapper.post(bean);
+		return id;
 	}
 	/**
 	 * @Description: 修改某一用户
