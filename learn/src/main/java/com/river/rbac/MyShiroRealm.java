@@ -63,9 +63,9 @@ public class MyShiroRealm extends AuthorizingRealm{
 		    UserBean bean= new UserBean();
 		    bean.setAccount(account);
 		    DSIdentification.setIdentification("db_rbac");
-		    bean =shiroService.getUser(account);	  
-		    if(bean == null){
-		    	throw new UnknownAccountException();
+		    bean =shiroService.getUser(account);
+		    if(bean == null){	    		
+		    	throw new UnknownAccountException();		    	
 		    }else{
 		    	if(password.equals(bean.getPassword())){
 		    		if(bean.getStatus()==Constant.LOGIN_STATUS_FREEZE){

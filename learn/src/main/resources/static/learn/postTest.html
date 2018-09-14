@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>安全系统后台管理</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="Access-Control-Allow-Origin" content="*">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="icon" href="favicon.ico">
+	<script type="text/javascript" src="/basic/js/jquery.js"></script>
+</head>
+<body >
+	<div>Hello</div>
+</body>
+<script type="text/javascript">
+$(function(){
+	//ajax();
+	ajax4();
+})
+function ajax1(){
+	var bean ={};
+	bean.id="112";
+	bean.name="zhangsan";
+	$.ajax({
+		url:"/post/post.htm",
+		type: 'post',
+		contentType:"application/json;charset=utf-8",   //非常重要，缺少这个参数，后端无法接收到对象
+		dataType: "json",
+		data:JSON.stringify(bean),
+		success: 
+			function(data){
+				console.log(data);
+			}
+	 });
+}
+function ajax2(){
+	var bean ={};
+	bean.id="112";
+	bean.name="zhangsan";
+	var beans=[]
+	beans.push(bean);
+	bean.id="1";
+	bean.name="lisi";
+	beans.push(bean);
+	$.ajax({
+		url:"/post/post1.htm",
+		type: 'post',
+		contentType:"application/json;charset=utf-8",   //非常重要，缺少这个参数，后端无法接收到对象
+		dataType: "json",
+		data:JSON.stringify(beans),
+		success: 
+			function(data){
+				console.log(data);
+			}
+	 });
+}
+function ajax3(){
+	$.ajax({
+		url:"/post/post2.htm",
+		type: 'get',
+		//contentType:"application/json;charset=utf-8",   //非常重要，缺少这个参数，后端无法接收到对象
+		dataType: "json",
+		data:{id:"wwww"},
+		success: 
+			function(data){
+				console.log(data);
+			}
+	 });
+}
+function ajax4(){
+	var bean ={id:"123"}
+	$.ajax({
+		url:"/post/post2.htm",
+		type: 'post',
+		//contentType:"application/json;charset=utf-8",   //非常重要，缺少这个参数，后端无法接收到对象
+		dataType: "json",
+		data:{id:"2220"},
+		success: 
+			function(data){
+				console.log(data);
+			}
+	 });
+}
+
+</script>
+</html>

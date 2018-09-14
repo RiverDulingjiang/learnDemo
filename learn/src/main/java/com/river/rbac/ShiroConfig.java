@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
  * @author River
  * @date 2018年9月5日
  */
-@Configuration
+//@Configuration
 public class ShiroConfig {
 	
 	@Bean

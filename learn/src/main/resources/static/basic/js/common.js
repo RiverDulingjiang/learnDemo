@@ -22,23 +22,10 @@ function requestDelete(url, data, callbackfun, async,dataType){
  * @param dataType 返回参数类型,默认为json
  */
 function commitData(url, data, callbackfun, async, method, dataType) {
-	if (method == null||method ==undefined) {
-		// 默认post方式
-		method = "post";
-	}
-	if (dataType == null||dataType ==undefined) {
-		// 默认json数据类型
-		dataType = "json";
-	}
-	if (async == undefined) {
-		async = true;
-	}
-	if (callbackfun.error == null) {
-		// 默认输出错误日志
-		callbackfun.error = function(data) {
-			alert("错误");
-		};
-	} 
+	if (method == null||method ==undefined) {method = "post";}
+	if (dataType == null||dataType ==undefined) {dataType = "json";}
+	if (async == undefined) {async = true;}
+	if (callbackfun.error == null) {callbackfun.error = function(data) {alert("错误");};} 
 	$.ajax({
 		url : url,
 		dataType : dataType,
@@ -46,9 +33,7 @@ function commitData(url, data, callbackfun, async, method, dataType) {
 		data : data,
 		async : async,
 		crossDomain : true,
-		headers : {
-			"returntype" : "ajax/json"
-		},
+		headers : {"returntype" : "ajax/json"},
 		traditional : true,
 		success : function(data) {
 			if(callbackfun.success) {

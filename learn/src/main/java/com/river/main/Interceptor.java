@@ -29,11 +29,11 @@ public class Interceptor extends WebMvcConfigurationSupport{
 	 * addPathPatterns("/**"):拦截所有
 	 * addPathPatterns("/**//*.htm"):拦截.hml请求
 	 */
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
-	    registry.addInterceptor(new InterceptorConfige()).addPathPatterns("/**").excludePathPatterns("/**/public/**","/*.html","/**/login");
-	   super.addInterceptors(registry);
-	}	
+	//@Override
+	//public void addInterceptors(InterceptorRegistry registry) {
+	//    registry.addInterceptor(new InterceptorConfige()).addPathPatterns("/**").excludePathPatterns("/**/public/**","/*.html","/**/login");
+	//   super.addInterceptors(registry);
+	//}	
 	/* 
 	 * 关闭请求地址后缀匹配
 	 */
