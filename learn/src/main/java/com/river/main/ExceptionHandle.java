@@ -4,6 +4,8 @@ package com.river.main;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.UnauthorizedException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,27 +21,29 @@ import com.river.basic.ResponseBean;
 @ControllerAdvice
 public class ExceptionHandle {
 
-    //拦截未授权页面
-    @ExceptionHandler(value = UnauthorizedException.class)
-    @ResponseBody
-    public ResponseBean<String> unauthorizedException(UnauthorizedException e) {
-    	ResponseBean<String> bean = new ResponseBean<>();
-    	bean.setCode(Constant.RESULT_NO_ACCESS);
-    	bean.setDesc("无接口权限");
-        return bean;
-    }
-    @ExceptionHandler(AuthorizationException.class)
-    public ResponseBean<String> authorizationException(AuthorizationException e) {
-    	ResponseBean<String> bean = new ResponseBean<>();
-    	bean.setCode(Constant.RESULT_NO_ACCESS);
-    	bean.setDesc("无接口权限");
-        return bean;
-    }
-    @ExceptionHandler(UnknownAccountException.class)
-    public ResponseBean<String> unknownAccountException(UnknownAccountException e) {
-    	ResponseBean<String> bean = new ResponseBean<>();
-    	bean.setCode(Constant.RESULT_NO_ACCESS);
-    	bean.setDesc("未登录");
-        return bean;
-    }
+	private final static Logger log = LoggerFactory.getLogger(ExceptionHandle.class);
+
+    @ExceptionHandler(value = Exception.class)
+	@ResponseBody
+	public ResponseBean<?> handle(Exception e) {
+    	ResponseBean<?> bean = new ResponseBean<>();
+		if (e instanceof UnauthorizedException) {  //拦截未授权页面
+			log.debug("该用户无权限！");
+			bean.setCode(Constant.RESULT_NO_ACCESS);
+			bean.setDesc("无接口权限");
+		}else if (e instanceof AuthorizationException) {
+			log.debug("该用户无权限！");
+			bean.setCode(Constant.RESULT_NO_ACCESS);
+			bean.setDesc("无接口权限");
+		}else if (e instanceof UnknownAccountException) {
+			log.debug("该用户无权限！");
+			bean.setCode(Constant.LOGIN_STATUS_NOT);
+	    	bean.setDesc("未登录");
+		}else {
+			log.error("【系统异常】{}", e);
+			bean.setCode(Constant.RESULT_EXCEPT);
+			bean.setDesc("未知错误,请联系管理员");
+		}
+		return bean;
+	}
 }
