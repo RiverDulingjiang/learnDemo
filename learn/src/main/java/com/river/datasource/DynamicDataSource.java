@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
 
+import com.river.basic.Constant;
+
 /**
  * 动态数据源
  * @author River
@@ -23,39 +25,33 @@ public class DynamicDataSource extends DataSource {
 		// 1.获取当前线程数据库标识
 		String identification = DSIdentification.getIdentification();
 		if (identification == null || identification == "") {
-			DataSource ds =new DataSource();
-			ds.setPoolProperties(this.getPoolProperties());
+			//若没有设置数据库，则默认选择一个数据库
+			DSIdentification.setIdentification(Constant.DATABASIC_MAIN);
+			identification = DSIdentification.getIdentification();
+		}
+		// 2.获取数据源
+		DataSource ds = DSManager.instance().getDDS(identification);
+
+		// 3.如果数据源不存在则创建
+		if (ds == null) {
 			try {
-				return ds.getConnection();
-			} catch (SQLException e) {
-				e.printStackTrace();
+				// 创建新的数据源
+				DataSource newDDS = createDS(identification);
+				// 将新的数据源放入数据源管理器中
+				DSManager.instance().addDDS(identification, newDDS);
+			} catch (IllegalArgumentException | IllegalAccessException e) {
 				return null;
 			}
-		} else {
-			// 2.获取数据源
-			DataSource ds = DSManager.instance().getDDS(identification);
+		}
 
-			// 3.如果数据源不存在则创建
-			if (ds == null) {
-				try {
-					// 创建新的数据源
-					DataSource newDDS = createDS(identification);
-					// 将新的数据源放入数据源管理器中
-					DSManager.instance().addDDS(identification, newDDS);
-				} catch (IllegalArgumentException | IllegalAccessException e) {
-					return null;
-				}
-			}
+		// 4.获取新的数据源
+		ds = DSManager.instance().getDDS(identification);
 
-			// 4.获取新的数据源
-			ds = DSManager.instance().getDDS(identification);
-
-			try {
-				return ds.getConnection();
-			} catch (SQLException e) {
-				e.printStackTrace();
-				return null;
-			}
+		try {
+			return ds.getConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
 		}
 	}
 

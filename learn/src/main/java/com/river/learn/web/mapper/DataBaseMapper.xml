@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.river.learn.web.mapper.DataBaseMapper">
+
+	<!-- 按条件查询列表 -->
+	<select id="getDataBases" resultType="com.river.learn.web.bean.DataBaseBean">
+		SELECT * FROM t_database WHERE 1=1
+		<if test="name !=null and name!=''">AND name=#{name}</if>
+		<if test="flag !=null and flag!=''">AND flag=#{flag}</if>
+		<if test="desc !=null and desc!=''">AND desc=#{desc}</if>
+		<if test="url !=null and url!=''">AND url=#{url}</if>
+		<if test="username !=null and username''">AND username=#{username}</if>
+		<if test="password !=null and password!=''">AND password=#{password}</if>
+		<if test="driverClassName !=null and driverClassName''">AND driverClassName=#{driverClassName}</if>
+		<if test="status !=null and status!=''">AND status=#{status}</if>
+	</select>
+	<select id="get" resultType="com.river.learn.web.bean.DataBaseBean" parameterType="java.lang.String">
+		SELECT * FROM t_database WHERE id={#id}
+	</select>
+	<!-- 添加 -->
+	<insert id="post" parameterType="com.river.learn.web.bean.DataBaseBean">
+		INSERT INTO t_database (id,name,flag,desc,url,username,password,driverClassName,status,createTime,createBy,updateTime,updateBy)
+		VALUES (#{id},#{name},#{flag},#{desc},#{url},#{username},#{password},#{driverClassName},#{status},#{createTime},#{createBy},#{updateTime},#{updateBy})
+	</insert>
+	<!-- 更新 -->
+	<update id="put" parameterType="com.river.learn.web.bean.DataBaseBean">
+		UPDATE t_database SET updateTime=#{updateTime},updateBy=#{updateTime}
+		<if test="name !=null and name!=''">,name=#{name}</if>
+		<if test="flag !=null and flag!=''">,flag=#{flag}</if>
+		<if test="desc !=null and desc!=''">,desc=#{desc}</if>
+		<if test="url !=null and url!=''">,url=#{url}</if>
+		<if test="username !=null and username''">,username=#{username}</if>
+		<if test="password !=null and password!=''">,password=#{password}</if>
+		<if test="driverClassName !=null and driverClassName''">,driverClassName=#{driverClassName}</if>
+		<if test="status !=null and status!=''">,status=#{status}</if>
+	</update>
+	<!-- 删除 -->
+	<delete id="delete" parameterType="java.lang.String">
+		DELETE FROM t_database WHERE id=#{id}
+	</delete>
+</mapper>

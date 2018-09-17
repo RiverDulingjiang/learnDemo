@@ -1,25 +1,60 @@
-package com.river.datasource;
+package com.river.learn.web.bean;
 
 /**
- * 数据库实体类
+ * 数据源实体管理类
  * @author River
- * @date 2018年9月11日
+ * @date 2018年9月17日
  */
-public class DBBean {
+public class DataBaseBean extends BaseBean{
 	/**
-	 * 数据源唯一标识
+	 * 数据源别名
+	 */
+	private String name;
+	/**
+	 * 数据库标识
 	 */
 	private String flag;
+	/**
+	 * 描述
+	 */
+	private String desc;
+	/**
+	 * 数据源url地址
+	 */
 	private String url;
+	/**
+	 * 数据源账户
+	 */
 	private String username;
+	/**
+	 * 数据源密码
+	 */
 	private String password;
+	/**
+	 * 数据源驱动
+	 */
 	private String driverClassName;
-	
+	/**
+	 * 数据源状态
+	 */
+	private Integer status;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public String getFlag() {
 		return flag;
 	}
 	public void setFlag(String flag) {
 		this.flag = flag;
+	}
+	public String getDesc() {
+		return desc;
+	}
+	public void setDesc(String desc) {
+		this.desc = desc;
 	}
 	public String getUrl() {
 		return url;
@@ -45,5 +80,10 @@ public class DBBean {
 	public void setDriverClassName(String driverClassName) {
 		this.driverClassName = driverClassName;
 	}
-	
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 }

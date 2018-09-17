@@ -7,6 +7,7 @@ package com.river.basic;
  */
 public class Constant {
 	
+	public static final String DATABASIC_MAIN = "_mainDataBase";
 	/**
 	 * 未登陆
 	 */

@@ -9,6 +9,10 @@ import java.util.Properties;
  * @author River
  * @date 2018年8月29日
  */
+/**
+ * @author River
+ * @date 2018年9月17日
+ */
 public class DBProperties {
 	public static String URL="url";
 	public static String USER_NAME="username";
@@ -18,6 +22,7 @@ public class DBProperties {
 	
 	/**
 	 * 存储所有的数据源信息，永远有效！
+	 * --其他数据源可以在需要的时候加入
 	 */
 	private static Map<String, Properties> DBMap = new HashMap<String, Properties>();
 	
@@ -63,6 +68,16 @@ public class DBProperties {
     	}     
     }
     /**
+     * @Description: 移除某个数据源
+     * @date 2018年9月17日
+     * @param identification
+     * @return
+     */
+    public static Map<String, Properties> removeDBmap(String identification){
+    	DBMap.remove(identification);
+    	return DBMap;
+    }
+    /**
      * @Description: 获取活跃的数据库信息
      * @date 2018年9月3日
      * @return
@@ -70,15 +85,41 @@ public class DBProperties {
     public static Map<String, Properties> getDBmap(){
     	return DBMap;
     }
+    
+    
+	/**
+	 * @Description: 获取某数据源的URL
+	 * @date 2018年9月17日
+	 * @param identification
+	 * @return
+	 */
 	public static String getUrl(String identification) {
 		return DBMap.get(identification).getProperty(DBProperties.URL);
 	}
+	/**
+	 * @Description: 获取某数据源的username
+	 * @date 2018年9月17日
+	 * @param identification
+	 * @return
+	 */
 	public static String getUsername(String identification) {		
 		return DBMap.get(identification).getProperty(DBProperties.USER_NAME);
 	}
+	/**
+	 * @Description: 获取某数据源的密码
+	 * @date 2018年9月17日
+	 * @param identification
+	 * @return
+	 */
 	public static String getPassword(String identification) {
 		return DBMap.get(identification).getProperty(DBProperties.PASSWORD);
 	}
+	/**
+	 * @Description: 获取某数据源的驱动
+	 * @date 2018年9月17日
+	 * @param identification
+	 * @return
+	 */
 	public static String getDriverClassName(String identification) {
 		return DBMap.get(identification).getProperty(DBProperties.DRVIER_CLASS_NAME);
 	}
