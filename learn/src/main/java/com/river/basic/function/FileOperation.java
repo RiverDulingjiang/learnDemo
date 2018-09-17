@@ -21,6 +21,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.river.basic.Constant;
 import com.river.basic.ResponseBean;
 
+/**
+ * 文件操作类
+ * @author River
+ * @date 2018年9月17日
+ */
 @Controller
 @RequestMapping("/function")
 public class FileOperation {
