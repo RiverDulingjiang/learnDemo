@@ -13,9 +13,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.river.basic.Constant;
 import com.river.basic.ResponseBean;
+import com.river.basic.UserSession;
 import com.river.datasource.DSIdentification;
 import com.river.learn.web.bean.DataSourceBean;
 import com.river.learn.web.mapper.DataSourceMapper;
+import com.river.rbac.bean.RoleBean;
 import com.river.rbac.bean.UserBean;
 
 @Controller
@@ -78,5 +80,10 @@ public class MytestAction {
 	 public String tiaozhuan1() {
 		
 	      return "redirect:/403.html";
+	 }
+	 @RequestMapping("/zhujie.htm")
+	 @ResponseBody
+	 public String zhujie(@UserSession(Constant.LOGIN_USER_SESSION)UserBean bean) {
+		return new Gson().toJson(bean);
 	 }
 }
