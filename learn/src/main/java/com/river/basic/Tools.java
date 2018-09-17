@@ -26,7 +26,7 @@ public class Tools {
 	 * @return
 	 */
 	public static String dateToString(Date date){
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:SS");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String dateString = format.format(date);
 		return dateString;
 	}

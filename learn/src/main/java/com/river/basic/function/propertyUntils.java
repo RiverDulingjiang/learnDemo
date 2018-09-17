@@ -21,4 +21,9 @@ public class propertyUntils {
 	public static int getEnvironment() {
 		return environment;
 	}
+
+	public void setEnvironment(int environment) {
+		propertyUntils.environment = environment;
+	}
+	
 }

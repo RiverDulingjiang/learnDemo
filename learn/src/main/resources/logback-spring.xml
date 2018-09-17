@@ -7,23 +7,18 @@
      <springProfile name="test,dev">
      	<!-- 设置日志上下文名称，可以通过%contextName来打印日志上下文名称 -->
      	<contextName>logback</contextName>
-     	<!-- <property file="src/main/resources/logback.properties" /> -->
     	<property name="log.path" value="D:\\web\\logback.log" />
     	
     	<!-- 日志控制台回滚策略 -->
    		<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
-        	<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            	<level>ERROR</level>
-        	</filter>
         	<encoder>
-           		<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+           		<pattern>%d{HH:mm:ss.SSS} %-5level L%line %logger{35} .%method - %msg%n</pattern>
            		<charset>UTF-8</charset> <!-- 此处设置字符集 -->
         	</encoder>
     	</appender>
     	
     	<!-- 日志文件回滚策略 -->
     	<appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        	<file>${log.path}</file>
         	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
         		<!-- 每天一归档 -->
             	<fileNamePattern>${log.path}.%d{yyyy-MM-dd}.zip</fileNamePattern>
@@ -32,25 +27,25 @@
 			   	<totalSizeCap>2GB</totalSizeCap>
         	</rollingPolicy>
         	<encoder>
-            	<pattern>%date %level [%thread] %logger{36} [%file : %line] %msg%n</pattern>
+            	<pattern>%d{HH:mm:ss.SSS} %-5level L%line %logger{35} .%method - %msg%n</pattern>
             	<charset>UTF-8</charset> <!-- 此处设置字符集 -->
        		</encoder>
     	</appender>
 
-    	<root level="debug">
+    	<root level="info">
         	<appender-ref ref="console" />
         	<appender-ref ref="file" />
     	</root>
     	
     	<!-- logger节点，可选节点，用来具体指明包的日志输出级别，它将会覆盖root的输出级别 -->
-        <logger name="org.springframework" level="WARN"/>
+    	<logger name="org.springframework.web" level="ERROR"/>
+        <logger name="com.river" level="debug"/>
     </springProfile>
 
 
     <!-- 生产环境 -->
     <springProfile name="prod">
-        <logger name="org.springframework.web" level="ERROR"/>
-        <logger name="org.liting" level="ERROR" />
+        <logger name="com.river" level="error"/>
     </springProfile>
 
 </configuration>
