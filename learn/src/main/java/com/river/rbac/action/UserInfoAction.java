@@ -28,7 +28,7 @@ public class UserInfoAction {
 	
 	@GetMapping(value = "/userInfo")
 	public ResponseBean<?> getUserInfos(UserInfoBean bean){
-		DSIdentification.setIdentification("db_rbac");
+		DSIdentification.setIdentification(Constant.DATABASIC_RBAC);
 		ResponseBean<List<UserInfoBean>> res = new ResponseBean<>();
 		List<UserInfoBean> beans = userInfoService.getAllUserInfo(bean);
 		res.setCode(Constant.RESULT_SUCCESS);
@@ -38,7 +38,7 @@ public class UserInfoAction {
 	}
 	@GetMapping(value = "/userInfo/{id}")
 	public ResponseBean<?> getUserInfoById(@PathVariable("id") String id){
-		DSIdentification.setIdentification("db_rbac");
+		DSIdentification.setIdentification(Constant.DATABASIC_RBAC);
 		ResponseBean<UserInfoBean> res = new ResponseBean<>();
 		UserInfoBean userInfoBean = userInfoService.getUserInfoById(id);
 		res.setCode(Constant.RESULT_SUCCESS);
@@ -48,7 +48,7 @@ public class UserInfoAction {
 	}
 	@PutMapping(value = "/userInfo/{id}")
 	public ResponseBean<?> putUserInfoById(@PathVariable("id") String id,UserInfoBean bean){
-		DSIdentification.setIdentification("db_rbac");
+		DSIdentification.setIdentification(Constant.DATABASIC_RBAC);
 		ResponseBean<UserInfoBean> res = new ResponseBean<>();
 		userInfoService.putUserInfo(bean);
 		res.setCode(Constant.RESULT_SUCCESS);
@@ -57,7 +57,7 @@ public class UserInfoAction {
 	}
 	@DeleteMapping(value = "/userInfo/{id}")
 	public ResponseBean<?> deleteUserInfoById(@PathVariable("id") String id){
-		DSIdentification.setIdentification("db_rbac");
+		DSIdentification.setIdentification(Constant.DATABASIC_RBAC);
 		ResponseBean<UserBean> res = new ResponseBean<>();
 		userInfoService.deleteUserInfo(id);
 		res.setCode(Constant.RESULT_SUCCESS);
@@ -66,7 +66,7 @@ public class UserInfoAction {
 	}
 	@PostMapping(value = "/userInfo")
 	public ResponseBean<?> postUserInfoById(@RequestBody UserInfoBean bean){
-		DSIdentification.setIdentification("db_rbac");
+		DSIdentification.setIdentification(Constant.DATABASIC_RBAC);
 		ResponseBean<String> res = new ResponseBean<>();
 		String id=userInfoService.postUserInfo(bean);
 		res.setCode(Constant.RESULT_SUCCESS);

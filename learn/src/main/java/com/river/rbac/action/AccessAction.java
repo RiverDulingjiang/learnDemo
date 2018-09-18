@@ -42,7 +42,7 @@ public class AccessAction {
 	@ResponseBody
     public String login(@RequestParam("account")String account,@RequestParam("password")String password,@RequestParam("rememberMe")Boolean rememberMe) {
 		ResponseBean<String> bean = new ResponseBean<>();
-		DSIdentification.setIdentification("_common");
+		DSIdentification.setIdentification(Constant.DATABASIC_RBAC);
 		String error = null;
         Subject subject = SecurityUtils.getSubject();
         //String newPassword = new SimpleHash("md5", password,  ByteSource.Util.bytes(account), 2).toHex();

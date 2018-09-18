@@ -53,8 +53,9 @@ public class MainDataSource implements ApplicationRunner {
 		DBProperties.setDBmap(Constant.DATABASIC_MAIN,p);
 		log.info("默认数据源<"+Constant.DATABASIC_MAIN+">已启动");
 		
-		DataBaseBean bean =dataBaseService.getDataBaseByFlag("_rbac");
+		DataBaseBean bean =dataBaseService.getDataBaseByFlag(Constant.DATABASIC_RBAC);
 		dataBaseService.addDataSource(bean);
+		log.info("权限数据源<"+Constant.DATABASIC_RBAC+">已启动");
 	}
 
 }

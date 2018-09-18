@@ -91,11 +91,15 @@ public class DynamicDataSource extends DataSource {
 		 * ProjectDBMgr.instance().getDBIP(identification),
 		 * ProjectDBMgr.instance().getDBName(identification)); ds.setUrl(url);
 		 */
-
-		ds.setUrl(DBProperties.getUrl(identification));
-		ds.setUsername(DBProperties.getUsername(identification));
-		ds.setPassword(DBProperties.getPassword(identification));
-		ds.setDriverClassName(DBProperties.getDriverClassName(identification));
+		if(DBProperties.getDBmap(identification)!=null){
+			ds.setUrl(DBProperties.getUrl(identification));
+			ds.setUsername(DBProperties.getUsername(identification));
+			ds.setPassword(DBProperties.getPassword(identification));
+			ds.setDriverClassName(DBProperties.getDriverClassName(identification));
+		}else{
+			throw new DatabaseException("该数据源未被持久化！无法连接该数据源");
+		}
+		
 
 		return ds;
 	}

@@ -1,7 +1,5 @@
 package com.river.learn.web.action;
 
-import java.util.List;
-
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +12,7 @@ import com.google.gson.Gson;
 import com.river.basic.Constant;
 import com.river.basic.ResponseBean;
 import com.river.basic.UserSession;
-import com.river.datasource.DSIdentification;
-import com.river.learn.web.bean.DataSourceBean;
-import com.river.learn.web.mapper.DataSourceMapper;
+import com.river.learn.web.mapper.DataBaseMapper;
 import com.river.rbac.bean.UserBean;
 
 @Controller
@@ -24,7 +20,7 @@ import com.river.rbac.bean.UserBean;
 public class MytestAction {
 	
 	 @Autowired
-	 private DataSourceMapper mapper;
+	 private DataBaseMapper mapper;
 	
 	 @RequestMapping("/home.htm")
 	 @ResponseBody
@@ -39,15 +35,6 @@ public class MytestAction {
 	 @ResponseBody
 	 public String activiti() {
 	       return "Hello World!";
-	 }
-	 
-	 @RequestMapping("/dataSource.htm")
-	 @ResponseBody
-	 public String dataSource(String projectCode) {
-		 System.out.println("projectCode:---"+projectCode);
-		 DSIdentification.setIdentification(projectCode);
-		 List<DataSourceBean> bean = mapper.get();		
-		 return  new Gson().toJson(bean);
 	 }
 	 
 	 @RequestMapping("/rbac.htm")

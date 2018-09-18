@@ -65,6 +65,7 @@ public class DataBaseService {
 	 */
 	public DataBaseBean getDataBaseByFlag(String flag){
 		DataBaseBean bean= new DataBaseBean();
+		bean.setFlag(flag);
 		List<DataBaseBean> beans = dataBaseMapper.getDataBases(bean);
 		if(beans!=null){
 			return beans.get(0);

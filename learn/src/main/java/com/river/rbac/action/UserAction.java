@@ -35,7 +35,7 @@ public class UserAction {
 	 */
 	@GetMapping(value = "/user")
 	public ResponseBean<?> getAllUser(){
-		DSIdentification.setIdentification("db_rbac");
+		DSIdentification.setIdentification(Constant.DATABASIC_RBAC);
 		ResponseBean<List<UserBean>> res = new ResponseBean<>();
 		List<UserBean> beans = shiroService.getAllUser();
 		res.setCode(Constant.RESULT_SUCCESS);
@@ -52,7 +52,7 @@ public class UserAction {
 	 */
 	@GetMapping(value = "/user/{id}")
 	public ResponseBean<?> getUserById(@PathVariable("id") String id){
-		DSIdentification.setIdentification("db_rbac");
+		DSIdentification.setIdentification(Constant.DATABASIC_RBAC);
 		ResponseBean<UserBean> res = new ResponseBean<>();
 		UserBean userBean = shiroService.getUserById(id);
 		res.setCode(Constant.RESULT_SUCCESS);
@@ -69,7 +69,7 @@ public class UserAction {
 	 */
 	@PutMapping(value = "/user/{id}")
 	public ResponseBean<?> putUserById(@PathVariable("id") String id,UserBean bean){
-		DSIdentification.setIdentification("db_rbac");
+		DSIdentification.setIdentification(Constant.DATABASIC_RBAC);
 		ResponseBean<UserBean> res = new ResponseBean<>();
 		shiroService.updateUserById(bean);
 		res.setCode(Constant.RESULT_SUCCESS);
@@ -84,7 +84,7 @@ public class UserAction {
 	 */
 	@DeleteMapping(value = "/user/{id}")
 	public ResponseBean<?> deleteUserById(@PathVariable("id") String id){
-		DSIdentification.setIdentification("db_rbac");
+		DSIdentification.setIdentification(Constant.DATABASIC_RBAC);
 		ResponseBean<UserBean> res = new ResponseBean<>();
 		shiroService.deleteUserById(id);
 		res.setCode(Constant.RESULT_SUCCESS);
@@ -100,7 +100,7 @@ public class UserAction {
 	 */
 	@PostMapping(value = "/user")
 	public ResponseBean<?> postUserById(UserBean userBean){
-		DSIdentification.setIdentification("db_rbac");
+		DSIdentification.setIdentification(Constant.DATABASIC_RBAC);
 		ResponseBean<UserBean> res = new ResponseBean<>();
 		shiroService.postUser(userBean);
 		res.setCode(Constant.RESULT_SUCCESS);

@@ -62,7 +62,7 @@ public class MyShiroRealm extends AuthorizingRealm{
 		    //<!--这里可以根据实际情况做缓存,Shiro自己也是有时间间隔机制，2分钟内不会重复执行该方法-->
 		    UserBean bean= new UserBean();
 		    bean.setAccount(account);
-		    DSIdentification.setIdentification("db_rbac");
+		    DSIdentification.setIdentification(Constant.DATABASIC_RBAC);
 		    bean =shiroService.getUser(account);
 		    if(bean == null){	    		
 		    	throw new UnknownAccountException();		    	

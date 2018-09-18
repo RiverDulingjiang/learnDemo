@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.river.basic.ResponseBean;
-import com.river.learn.web.bean.DataSourceBean;
+import com.river.learn.web.bean.DataBaseBean;
 
 @Controller
 @RequestMapping("/post")
@@ -16,8 +16,8 @@ public class PostTest {
 	
 	 @RequestMapping("/post.htm")
 	 @ResponseBody
-	 public String home(@RequestBody DataSourceBean bean){
-		 ResponseBean<DataSourceBean> res = new ResponseBean<>();
+	 public String home(@RequestBody DataBaseBean bean){
+		 ResponseBean<DataBaseBean> res = new ResponseBean<>();
 		 res.setCode(0);
 		 res.setData(bean);
 		 res.setDesc("success");
@@ -25,8 +25,8 @@ public class PostTest {
 	 }
 	 @RequestMapping("/post1.htm")
 	 @ResponseBody
-	 public String home1(@RequestBody List<DataSourceBean> beans){
-		 ResponseBean<List<DataSourceBean>> res = new ResponseBean<>();
+	 public String home1(@RequestBody List<DataBaseBean> beans){
+		 ResponseBean<List<DataBaseBean>> res = new ResponseBean<>();
 		 res.setCode(0);
 		 res.setData(beans);
 		 res.setDesc("success1");

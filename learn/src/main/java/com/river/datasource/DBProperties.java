@@ -78,14 +78,22 @@ public class DBProperties {
     	return DBMap;
     }
     /**
-     * @Description: 获取活跃的数据库信息
+     * @Description: 获取所有持久化数据库信息
      * @date 2018年9月3日
      * @return
      */
     public static Map<String, Properties> getDBmap(){
     	return DBMap;
     }
-    
+    /**
+     * @Description:获取某一数据源信息
+     * @date 2018年9月18日
+     * @param identification
+     * @return
+     */
+    public static Properties getDBmap(String identification){
+    	return DBMap.get(identification);
+    }
     
 	/**
 	 * @Description: 获取某数据源的URL

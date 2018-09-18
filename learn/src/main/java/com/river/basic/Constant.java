@@ -7,7 +7,14 @@ package com.river.basic;
  */
 public class Constant {
 	
+	/**
+	 * 默认数据源
+	 */
 	public static final String DATABASIC_MAIN = "_mainDataBase";
+	/**
+	 * 权限数据源
+	 */
+	public static final String DATABASIC_RBAC = "_rbac";
 	/**
 	 * 未登陆
 	 */

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.river.basic.Constant;
 import com.river.basic.ResponseBean;
+import com.river.datasource.DatabaseException;
 
 /**
  * 异常拦截
@@ -39,6 +40,10 @@ public class ExceptionHandle {
 			log.debug("该用户无权限！");
 			bean.setCode(Constant.LOGIN_STATUS_NOT);
 	    	bean.setDesc("未登录");
+		}else if (e instanceof DatabaseException) {
+			log.debug("数据源异常");
+			bean.setCode(Constant.RESULT_EXCEPT);
+	    	bean.setDesc("数据源异常");
 		}else {
 			log.error("【系统异常】{}", e);
 			bean.setCode(Constant.RESULT_EXCEPT);
