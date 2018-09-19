@@ -1,4 +1,4 @@
-package com.river.learn.web.service;
+package com.river.learn.basic.service;
 
 import java.util.Date;
 import java.util.List;
@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.river.basic.Tools;
 import com.river.datasource.DBProperties;
-import com.river.learn.web.bean.DataBaseBean;
-import com.river.learn.web.mapper.DataBaseMapper;
+import com.river.learn.basic.bean.DataBaseBean;
+import com.river.learn.basic.mapper.DataBaseMapper;
 
 /**
  * 动态数据库管理服务类

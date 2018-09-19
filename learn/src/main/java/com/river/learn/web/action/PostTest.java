@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.river.basic.ResponseBean;
-import com.river.learn.web.bean.DataBaseBean;
+import com.river.learn.basic.bean.DataBaseBean;
 
 @Controller
 @RequestMapping("/post")

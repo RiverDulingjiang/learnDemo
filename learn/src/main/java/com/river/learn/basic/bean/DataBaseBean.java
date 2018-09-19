@@ -1,4 +1,4 @@
-package com.river.learn.web.bean;
+package com.river.learn.basic.bean;
 
 /**
  * 数据源实体管理类

@@ -1,10 +1,10 @@
-package com.river.learn.web.mapper;
+package com.river.learn.basic.mapper;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.river.learn.web.bean.DataBaseBean;
+import com.river.learn.basic.bean.DataBaseBean;
 
 /**
  * 数据源服务数据层

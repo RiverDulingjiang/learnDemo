@@ -55,4 +55,29 @@ var navs = [{
 	"icon" : "icon-text",
 	"href" : "",
 	"spread" : false
+},{
+	"title" : "应用监控",
+	"icon" : "icon-text",
+	"href" : "",
+	"spread" : false,
+	"children" : [
+		{
+			"title" : "在线统计",
+			"icon" : "icon-text",
+			"href" : "",
+			"spread" : false
+		},
+		{
+			"title" : "接口统计",
+			"icon" : "icon-text",
+			"href" : "",
+			"spread" : false
+		},
+		{
+			"title" : "登陆统计",
+			"icon" : "icon-text",
+			"href" : "",
+			"spread" : false
+		}
+	]
 }]

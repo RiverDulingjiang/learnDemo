@@ -4,7 +4,7 @@ var root ="";
  * get获取请求
  * */
 function requestGet(url, data, callbackfun, async,dataType){
-	commitData(url,data,callbackfun,async,"get",dataType,contentType);
+	commitData(url,data,callbackfun,async,"get",dataType);
 }
 /**
  * post新增请求
@@ -17,13 +17,13 @@ function requestPost(url, data, callbackfun, async,dataType){
  * put修改请求
  * */
 function requestPut(url, data, callbackfun, async,dataType){
-	commitData(url,data,callbackfun,async,"put",dataType,contentType);
+	commitData(url,data,callbackfun,async,"put",dataType);
 }
 /**
  * delete删除请求
  * */
 function requestDelete(url, data, callbackfun, async,dataType){
-	commitData(url,data,callbackfun,async,"delete",dataType,contentType);
+	commitData(url,data,callbackfun,async,"delete",dataType);
 }
 /**
  * ajax调用

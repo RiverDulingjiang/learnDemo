@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
 
 import com.river.basic.Constant;
 import com.river.datasource.DBProperties;
-import com.river.learn.web.bean.DataBaseBean;
-import com.river.learn.web.service.DataBaseService;
+import com.river.learn.basic.bean.DataBaseBean;
+import com.river.learn.basic.service.DataBaseService;
 
 /**
  * 项目启动后立即执行该方法：优先级为一

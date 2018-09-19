@@ -12,7 +12,7 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration  
 @ConfigurationProperties(prefix = "config")  
 @PropertySource("classpath:config.properties")
-public class propertyUntils {
+public class PropertyUntils {
 	/**
 	 * 环境：0测试环境；1生产环境
 	 */
@@ -23,7 +23,7 @@ public class propertyUntils {
 	}
 
 	public void setEnvironment(int environment) {
-		propertyUntils.environment = environment;
+		PropertyUntils.environment = environment;
 	}
 	
 }

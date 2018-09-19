@@ -12,7 +12,7 @@ import com.google.gson.Gson;
 import com.river.basic.Constant;
 import com.river.basic.ResponseBean;
 import com.river.basic.UserSession;
-import com.river.learn.web.mapper.DataBaseMapper;
+import com.river.learn.basic.mapper.DataBaseMapper;
 import com.river.rbac.bean.UserBean;
 
 @Controller
