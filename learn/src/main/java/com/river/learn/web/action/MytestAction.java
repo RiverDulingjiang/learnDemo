@@ -14,6 +14,7 @@ import com.river.basic.ResponseBean;
 import com.river.basic.UserSession;
 import com.river.learn.basic.mapper.DataBaseMapper;
 import com.river.rbac.bean.UserBean;
+import com.river.rbac.service.DepartmentService;
 
 @Controller
 @RequestMapping("/api/test")
@@ -21,6 +22,8 @@ public class MytestAction {
 	
 	 @Autowired
 	 private DataBaseMapper mapper;
+	 @Autowired
+	 private DepartmentService DepartmentService;
 	
 	 @RequestMapping("/home.htm")
 	 @ResponseBody
@@ -71,5 +74,12 @@ public class MytestAction {
 	 @ResponseBody
 	 public String zhujie(@UserSession(Constant.LOGIN_USER_SESSION)UserBean bean) {
 		return new Gson().toJson(bean);
+	 }
+	 @RequestMapping("/deptId.htm")
+	 @ResponseBody
+	 public String deptId(String start) {
+		String dept = DepartmentService.getChildPointId(start);
+		System.out.println(dept);
+		return dept;
 	 }
 }

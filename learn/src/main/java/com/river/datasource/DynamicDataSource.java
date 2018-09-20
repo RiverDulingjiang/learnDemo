@@ -6,8 +6,11 @@ import java.sql.SQLException;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.river.basic.Constant;
+import com.river.main.MainDataSource;
 
 /**
  * 动态数据源
@@ -15,7 +18,7 @@ import com.river.basic.Constant;
  * @date 2018年8月29日
  */
 public class DynamicDataSource extends DataSource {
-
+	private static final Logger log = LoggerFactory.getLogger(DynamicDataSource.class);
 	/* 
 	 * 动态连接数据库
 	 */
@@ -24,16 +27,19 @@ public class DynamicDataSource extends DataSource {
 
 		// 1.获取当前线程数据库标识
 		String identification = DSIdentification.getIdentification();
+		log.info("请求的数据源："+identification);
 		if (identification == null || identification == "") {
 			//若没有设置数据库，则默认选择一个数据库
 			DSIdentification.setIdentification(Constant.DATABASIC_MAIN);
 			identification = DSIdentification.getIdentification();
 		}
+		DSIdentification.remove();
 		// 2.获取数据源
 		DataSource ds = DSManager.instance().getDDS(identification);
-
+		
 		// 3.如果数据源不存在则创建
 		if (ds == null) {
+			log.info("该数据源已被关闭，重新建立连接.......："+identification);
 			try {
 				// 创建新的数据源
 				DataSource newDDS = createDS(identification);
@@ -42,8 +48,9 @@ public class DynamicDataSource extends DataSource {
 			} catch (IllegalArgumentException | IllegalAccessException e) {
 				return null;
 			}
-		}
-
+		}else{
+			log.info("该数据源数据活跃线程，正在连接.......："+identification);
+		}		
 		// 4.获取新的数据源
 		ds = DSManager.instance().getDDS(identification);
 

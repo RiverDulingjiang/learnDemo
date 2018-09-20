@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.river.basic.Constant;
 import com.river.basic.Tools;
+import com.river.datasource.DSIdentification;
 import com.river.rbac.bean.PermissionBean;
 import com.river.rbac.bean.RoleBean;
 import com.river.rbac.bean.UserBean;
@@ -36,10 +38,12 @@ public class ShiroService {
 	public UserBean getUser(String account){
 		//0：关闭状态；1开启状态；100冻结状态
 		UserBean bean = userMapper.login(account, 1); 
-		if(bean!=null){			
+		if(bean!=null){
+			DSIdentification.setIdentification(Constant.DATABASIC_RBAC);
 			List<RoleBean> roleBeans =roleMapper.getRoles(bean.getAccount());
 			bean.setRoleBeans(roleBeans);
 			for(RoleBean roleBean:roleBeans){
+				DSIdentification.setIdentification(Constant.DATABASIC_RBAC);
 				List<PermissionBean> permissionBeans = permissionMapper.getPermissions(roleBean.getIdCard());
 				roleBean.setPermisssionBeans(permissionBeans);
 			}
