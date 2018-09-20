@@ -14,4 +14,8 @@ public class TestService {
 	 public List<String> user() {
 		 return Arrays.asList("xiaoming","river");
 	 }
+	 public String service() {
+		    System.out.println("Service.............");
+		    return "seccuss";
+	 }
 }

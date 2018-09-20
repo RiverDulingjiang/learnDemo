@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.river.basic.Constant;
-import com.river.main.MainDataSource;
 
 /**
  * 动态数据源

@@ -17,7 +17,7 @@ public class PermissionBean {
 	/**
 	 * 权限唯一标识
 	 */
-	private String idCard;
+	private String code;
 	/**
 	 * 路径
 	 */
@@ -38,11 +38,11 @@ public class PermissionBean {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getIdCard() {
-		return idCard;
+	public String getCode() {
+		return code;
 	}
-	public void setIdCard(String idCard) {
-		this.idCard = idCard;
+	public void setCode(String code) {
+		this.code = code;
 	}
 	public String getUrl() {
 		return url;

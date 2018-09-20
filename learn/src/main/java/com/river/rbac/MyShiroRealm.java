@@ -17,7 +17,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.river.basic.Constant;
-import com.river.datasource.DSIdentification;
 import com.river.rbac.bean.PermissionBean;
 import com.river.rbac.bean.RoleBean;
 import com.river.rbac.bean.UserBean;
@@ -42,10 +41,10 @@ public class MyShiroRealm extends AuthorizingRealm{
 	    for(RoleBean role:userInfo.getRoleBeans()){
 	    	builder.append(role.getName()+",");
 	    	//添加角色
-	        authorizationInfo.addRole(role.getIdCard());
+	        authorizationInfo.addRole(role.getCode());
 	        for(PermissionBean p:role.getPermisssionBeans()){
 	        	//添加权限
-	            authorizationInfo.addStringPermission(p.getIdCard());
+	            authorizationInfo.addStringPermission(p.getCode());
 	        }
 	    }
 	    log.info("用户：<"+userInfo.getAccount()+">的角色为:"+authorizationInfo.getRoles());

@@ -19,7 +19,7 @@ public class RoleBean {
 	/**
 	 * 角色唯一标识
 	 */
-	private String idCard;
+	private String code;
 	/**
 	 * 角色描述
 	 */
@@ -40,11 +40,11 @@ public class RoleBean {
 	public void setName(String name) {
 		this.name = name;
 	}	
-	public String getIdCard() {
-		return idCard;
+	public String getCode() {
+		return code;
 	}
-	public void setIdCard(String idCard) {
-		this.idCard = idCard;
+	public void setCode(String code) {
+		this.code = code;
 	}
 	public String getDesc() {
 		return desc;

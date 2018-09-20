@@ -13,6 +13,7 @@ import com.river.basic.Constant;
 import com.river.basic.ResponseBean;
 import com.river.basic.UserSession;
 import com.river.learn.basic.mapper.DataBaseMapper;
+import com.river.learn.web.service.TestService;
 import com.river.rbac.bean.UserBean;
 import com.river.rbac.service.DepartmentService;
 
@@ -81,5 +82,11 @@ public class MytestAction {
 		String dept = DepartmentService.getChildPointId(start);
 		System.out.println(dept);
 		return dept;
+	 }
+	 @RequestMapping("/testService.htm")
+	 @ResponseBody
+	 public String testService(String startId) {
+		 String flag =new DepartmentService().getChildPointId(startId);
+		 return flag;
 	 }
 }

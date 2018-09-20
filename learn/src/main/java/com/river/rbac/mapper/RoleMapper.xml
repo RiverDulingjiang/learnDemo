@@ -7,18 +7,18 @@
 		SELECT * FROM t_role WHERE 1=1
 		<if test="id != null and id !=''">AND id=#{id}</if>
 		<if test="name != null and name !=''">AND name=#{name}</if>
-		<if test="idCard != null and idCard !=''">AND idCard=#{idCard}</if>
+		<if test="code != null and code !=''">AND code=#{code}</if>
 		<if test="desc != null and desc !=''">AND desc=#{desc}</if>
 	</select>
 	<!-- 插入数据 -->
 	<insert id="post" parameterType="com.river.rbac.bean.RoleBean">
-		INSERT INTO t_role (id,name,idCard,desc)
-		VALUES (#{id},#{name},#{idCard},#{desc})
+		INSERT INTO t_role (id,name,code,desc)
+		VALUES (#{id},#{name},#{code},#{desc})
 	</insert>
 	<!-- 按用户角色关系表查询数据 -->
 	<select id="getRoles" parameterType="java.lang.String" resultType="com.river.rbac.bean.RoleBean">
 		SELECT a.* FROM t_role a
-		LEFT JOIN t_user_role b ON b.role =a.idCard
+		LEFT JOIN t_user_role b ON b.role =a.code
 		WHERE b.user =#{user}
 	</select>
 </mapper>

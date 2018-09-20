@@ -4,6 +4,6 @@
 
 	<!-- 按条件查询 -->
 	<select id="selectDeptList" resultType="java.util.HashMap">
-		SELECT * FROM t_tree
+		SELECT * FROM t_department
 	</select>
 </mapper>

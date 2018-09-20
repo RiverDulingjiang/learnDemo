@@ -44,7 +44,7 @@ public class ShiroService {
 			bean.setRoleBeans(roleBeans);
 			for(RoleBean roleBean:roleBeans){
 				DSIdentification.setIdentification(Constant.DATABASIC_RBAC);
-				List<PermissionBean> permissionBeans = permissionMapper.getPermissions(roleBean.getIdCard());
+				List<PermissionBean> permissionBeans = permissionMapper.getPermissions(roleBean.getCode());
 				roleBean.setPermisssionBeans(permissionBeans);
 			}
 			return bean;
