@@ -11,6 +11,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.river.basic.Constant;
+import com.river.basic.exception.SessionException;
 
 
 /**
@@ -38,8 +39,12 @@ public class InterceptorConfige implements HandlerInterceptor{
 		Session session = SecurityUtils.getSubject().getSession(false);
 		if(session ==null||session.getAttribute(Constant.LOGIN_USER_SESSION)==null){
 			log.info("登录信息失效！转回登录界面");
-			response.sendRedirect(request.getContextPath()+"/index.html");
-			return false;
+			if(httpRequest.getServletPath().endsWith(".html")){
+				response.sendRedirect(request.getContextPath()+"/login.html");
+				return false;
+			}else {
+				throw new SessionException("Session失效");
+			}			
 		}else{
 			return true;
 		}

@@ -40,7 +40,7 @@ function commitData(url, data, callbackfun, async, method, dataType,contentType)
 	if (method == null||method ==undefined) {method = "post";}
 	if (dataType == null||dataType ==undefined) {dataType = "json";}
 	if (contentType == null||contentType ==undefined) {contentType = "application/x-www-form-urlencoded";}	
-	if (callbackfun.error == null) {callbackfun.error = function(data) {alert("错误");};} 
+	if (callbackfun.error == null) {callbackfun.error = function(data) {alert("请求发生错误");};} 
 	$.ajax({
 		url : url,
 		data : data,
@@ -53,12 +53,14 @@ function commitData(url, data, callbackfun, async, method, dataType,contentType)
 		traditional : true,
 		success : function(data) {
 			if(callbackfun.success) {
-				callbackfun.success(data);
-			}else{
-				if(data.code==1000){
-					top.location.href = "/index.html"
+				if(data.code==1000){//跳转到登陆页面
+					top.location.href = "/login.html"
+				}else{
+					callbackfun.success(data);
 				}
+				
 			}
+			
 		},
 		error : callbackfun.error
 	});

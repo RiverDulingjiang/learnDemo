@@ -67,4 +67,14 @@ public class AccessAction {
         	return bean.toJson();
         }
     }
+	
+	@RequestMapping("/quit")
+	@ResponseBody
+    public ResponseBean<?> quit() {
+		ResponseBean<String> res = new ResponseBean<>();
+		SecurityUtils.getSubject().logout();
+		res.setCode(Constant.LOGIN_STATUS_NOT);
+		res.setDesc("退出系统");
+	    return res;
+	}
 }

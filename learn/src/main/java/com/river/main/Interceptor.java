@@ -1,11 +1,8 @@
 package com.river.main;
 
 import java.nio.charset.Charset;
-import java.util.EventListener;
 import java.util.List;
 
-import org.apache.catalina.SessionListener;
-import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -44,7 +41,7 @@ public class Interceptor extends WebMvcConfigurationSupport{
 	 */
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-	    registry.addInterceptor(new InterceptorConfige()).addPathPatterns("/**").excludePathPatterns("/**/public/**","/*.html","/**/login");
+	    registry.addInterceptor(new InterceptorConfige()).addPathPatterns("/**/api/**","/**/*.html").excludePathPatterns("/**/login.html","/**/login");
 	   super.addInterceptors(registry);
 	}	
 	/* 

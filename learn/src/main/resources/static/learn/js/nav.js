@@ -15,7 +15,7 @@ var navs = [{
 		{
 			"title" : "部门管理",
 			"icon" : "icon-text",
-			"href" : "",
+			"href" : "./page/rbac/deptList.html",
 			"spread" : false
 		},
 		{

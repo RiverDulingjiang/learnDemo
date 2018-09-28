@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.river.basic.Constant;
 import com.river.basic.ResponseBean;
-import com.river.datasource.DatabaseException;
+import com.river.basic.exception.DatabaseException;
+import com.river.basic.exception.SessionException;
 
 /**
  * 异常拦截
@@ -32,7 +33,7 @@ public class ExceptionHandle {
 			log.debug("该用户无权限！");
 			bean.setCode(Constant.RESULT_NO_ACCESS);
 			bean.setDesc("无接口权限");
-		}else if (e instanceof AuthorizationException) {
+		}else if (e instanceof AuthorizationException) { //拦截未授权页面
 			log.debug("该用户无权限！");
 			bean.setCode(Constant.RESULT_NO_ACCESS);
 			bean.setDesc("无接口权限");
@@ -40,12 +41,16 @@ public class ExceptionHandle {
 			log.debug("该用户无权限！");
 			bean.setCode(Constant.LOGIN_STATUS_NOT);
 	    	bean.setDesc("未登录");
-		}else if (e instanceof DatabaseException) {
+		}else if (e instanceof DatabaseException) {//自定义数据源异常
 			log.debug("数据源异常");
 			bean.setCode(Constant.RESULT_EXCEPT);
 	    	bean.setDesc("数据源异常");
+		}else if (e instanceof SessionException) {//自定义session异常
+			log.debug("Session异常");
+			bean.setCode(Constant.LOGIN_STATUS_NOT);
+	    	bean.setDesc("session失效，请重新登陆");
 		}else {
-			log.error("【系统异常】{}", e);
+			log.error("【系统异常】", e);
 			bean.setCode(Constant.RESULT_EXCEPT);
 			bean.setDesc("未知错误,请联系管理员");
 		}

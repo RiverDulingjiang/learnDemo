@@ -1,19 +1,21 @@
 package com.river.basic.exception;
 
 /**
- * 自定义数据库异常
+ * Session失效异常或者session为空
  * @author River
- * @date 2018年9月18日
+ * @date 2018年9月28日
  */
-public class DatabaseException extends RuntimeException{
+public class SessionException extends RuntimeException{
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public DatabaseException(String msg){
-		this.msg = msg;
+	public SessionException(String msg){
+		this.msg =msg;
 	}
+
 	/**
 	 * 异常提示
 	 */
