@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.river.basic.Constant;
+import com.river.basic.exception.DatabaseException;
 
 /**
  * 动态数据源
@@ -26,7 +27,6 @@ public class DynamicDataSource extends DataSource {
 
 		// 1.获取当前线程数据库标识
 		String identification = DSIdentification.getIdentification();
-		log.info("请求的数据源："+identification);
 		if (identification == null || identification == "") {
 			//若没有设置数据库，则默认选择一个数据库
 			DSIdentification.setIdentification(Constant.DATABASIC_MAIN);
