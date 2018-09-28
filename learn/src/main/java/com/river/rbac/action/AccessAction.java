@@ -68,6 +68,11 @@ public class AccessAction {
         }
     }
 	
+	/**
+	 * @Description: 退出系统，销毁session
+	 * @date 2018年9月28日
+	 * @return
+	 */
 	@RequestMapping("/quit")
 	@ResponseBody
     public ResponseBean<?> quit() {

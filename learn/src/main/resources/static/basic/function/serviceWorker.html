@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>service worker!</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <style>
+        body {
+            width: 35em;
+            margin: 0 auto;
+            font-family: Tahoma, Verdana, Arial, sans-serif;
+        }
+    </style>
+    <script type="text/javascript">
+        function loaded() {
+            if (window.localStorage) {
+                document.getElementById("info").innerText += "浏览器支持本地缓存.\n";
+            }
+            if ('serviceWorker' in navigator) {
+                document.getElementById("info").innerText += "浏览器支持service worker.\n";
+                navigator.serviceWorker.register('basic/js/sw.js').then(function () {
+                    console.log("Registe successfully.");
+                });
+            }
+        }
+
+        function sendMessage(message) {
+            return new Promise(function(resolve, reject) {
+                const messageChannel = new MessageChannel();
+                messageChannel.port1.onmessage = function(event) {
+                    if (event.data.error) {
+                        reject(event.data.error);
+                    } else {
+                        resolve(event.data);
+                    }
+                };
+                navigator.serviceWorker.controller.postMessage(message, [messageChannel.port2]);
+            });
+        }
+    </script>
+    
+</head>
+
+<body onload="loaded();">
+浏览器信息
+<pre id="info"></pre>
+<img src="../image/serviceWorker.jpg"/>
+</body>
+
+</html>
