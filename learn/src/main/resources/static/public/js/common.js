@@ -1,5 +1,5 @@
 var root ="";
-
+var ctx ="";
 /**
  * ajax调用
  * @param url 链接地址
@@ -26,9 +26,10 @@ function commitData(url, data, callbackfun, async, method, dataType) {
 		callbackfun.error = function(data) {
 			alert("错误");
 		};
-	} 
+	}
+	ctx = getRootPath();
 	$.ajax({
-		url : url,
+		url : ctx+url,
 		dataType : dataType,
 		type : method,
 		data : data,
@@ -50,3 +51,12 @@ function commitData(url, data, callbackfun, async, method, dataType) {
 		error : callbackfun.error
 	});
 }
+/**
+ * 获取项目根路径
+ */
+function getRootPath() {  
+    var pathName = window.location.pathname.substring(1);  
+    var webName = pathName == '' ? '' : pathName.substring(0, pathName.indexOf('/'));
+    var path =  window.location.protocol + '//' + window.location.host + '/' + webName;
+    return path;  
+} 

@@ -1,29 +1,29 @@
 var root ="";
-
+var ctx ="";
 /**
  * get获取请求
  * */
 function requestGet(url, data, callbackfun, async,dataType){
-	commitData(url,data,callbackfun,async,"get",dataType);
+	commitData(url,data,callbackfun,async,"GET",dataType);
 }
 /**
  * post新增请求
  * */
 function requestPost(url, data, callbackfun, async,dataType){
 	contentType="application/json;charset=utf-8"
-	commitData(url,data,callbackfun,async,"post",dataType,contentType);
+	commitData(url,data,callbackfun,async,"POST",dataType,contentType);
 }
 /**
  * put修改请求
  * */
 function requestPut(url, data, callbackfun, async,dataType){
-	commitData(url,data,callbackfun,async,"put",dataType);
+	commitData(url,data,callbackfun,async,"PUT",dataType);
 }
 /**
  * delete删除请求
  * */
 function requestDelete(url, data, callbackfun, async,dataType){
-	commitData(url,data,callbackfun,async,"delete",dataType);
+	commitData(url,data,callbackfun,async,"DELETE",dataType);
 }
 /**
  * ajax调用
@@ -37,12 +37,13 @@ function requestDelete(url, data, callbackfun, async,dataType){
  */
 function commitData(url, data, callbackfun, async, method, dataType,contentType) {
 	if (async == undefined) {async = true;}
-	if (method == null||method ==undefined) {method = "post";}
+	if (method == null||method ==undefined) {method = "POST";}
 	if (dataType == null||dataType ==undefined) {dataType = "json";}
 	if (contentType == null||contentType ==undefined) {contentType = "application/x-www-form-urlencoded";}	
-	if (callbackfun.error == null) {callbackfun.error = function(data) {alert("请求发生错误");};} 
+	if (callbackfun.error == null) {callbackfun.error = function(data) {alert("请求发生错误");};}
+	ctx = getRootPath();
 	$.ajax({
-		url : url,
+		url : ctx +url,
 		data : data,
 		async : async,
 		type : method,
@@ -84,3 +85,12 @@ function getFieldByUrl(url, field) {
 		return unescape(r[2]);
 	return "";
 }
+/**
+ * 获取项目根路径
+ */
+function getRootPath() {  
+    var pathName = window.location.pathname.substring(1);  
+    var webName = pathName == '' ? '' : pathName.substring(0, pathName.indexOf('/'));
+    var path =  window.location.protocol + '//' + window.location.host + '/' + webName;
+    return path;  
+} 
