@@ -44,5 +44,5 @@ public interface UserMapper {
 	 * @param bean
 	 * @return
 	 */
-	public UserBean login(@Param("account")String id,@Param("status")Integer status);
+	public UserBean login(@Param("account")String account,@Param("status")Integer status);
 }

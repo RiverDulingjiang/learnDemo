@@ -23,7 +23,14 @@
 	</insert>
 	<!-- 更新数据 -->
 	<update id="put" parameterType="com.river.rbac.bean.UserInfoBean">
-		UPDATE t_user_info SET(name,account,sex,department,status,updateTime) VALUES (#{name},#{account},#{sex},#{department},#{status},#{updateTime}) WHERE id=#{id}
+		UPDATE t_user_info SET updateTime = NOW()
+			<if test="name != null and name !=''">, name=#{name}</if>
+			<if test="account != null and account !=''">, account=#{account}</if>
+			<if test="sex != null and sex !=''">, sex=#{sex}</if>
+			<if test="department != null and department !=''">, department=#{department}</if>
+			<if test="status != null and status !=''">, status=#{status}</if>
+			<if test="updateTime != null and name !=''">, name=#{name}</if>
+		WHERE id=#{id}
 	</update>
 	<!-- 删除数据 -->
 	<delete id="delete" parameterType="java.lang.String">

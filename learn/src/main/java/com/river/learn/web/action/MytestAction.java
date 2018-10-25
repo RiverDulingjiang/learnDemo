@@ -79,14 +79,14 @@ public class MytestAction {
 	 @RequestMapping("/deptId.htm")
 	 @ResponseBody
 	 public String deptId(String start) {
-		String dept = DepartmentService.getChildPointId(start);
+		String dept = DepartmentService.getAllNodes(start);
 		System.out.println(dept);
 		return dept;
 	 }
 	 @RequestMapping("/testService.htm")
 	 @ResponseBody
 	 public String testService(String startId) {
-		 String flag =new DepartmentService().getChildPointId(startId);
+		 String flag =new DepartmentService().getAllNodes(startId);
 		 return flag;
 	 }
 }

@@ -10,14 +10,15 @@ function requestGet(url, data, callbackfun, async,dataType){
  * post新增请求
  * */
 function requestPost(url, data, callbackfun, async,dataType){
-	contentType="application/json;charset=utf-8"
+	contentType="application/json;charset=utf-8";
 	commitData(url,data,callbackfun,async,"POST",dataType,contentType);
 }
 /**
  * put修改请求
  * */
 function requestPut(url, data, callbackfun, async,dataType){
-	commitData(url,data,callbackfun,async,"PUT",dataType);
+	contentType="application/json;charset=utf-8";
+	commitData(url,data,callbackfun,async,"PUT",dataType,contentType);
 }
 /**
  * delete删除请求
@@ -93,4 +94,4 @@ function getRootPath() {
     var webName = pathName == '' ? '' : pathName.substring(0, pathName.indexOf('/'));
     var path =  window.location.protocol + '//' + window.location.host + '/' + webName;
     return path;  
-} 
+}

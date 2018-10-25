@@ -11,14 +11,21 @@ import java.util.UUID;
  */
 public class Tools {
 	/**
-	 * @Description: 随机UUID
+	 * @Description: 随机UUID32位
 	 * @date 2018年9月10日
 	 * @return
 	 */
-	public static String randomUUID(){		
+	public static String randomUUID(){	
+		return UUID.randomUUID().toString().replace("-", "").toLowerCase();
+	}
+	/**
+	 * @Description: UUID36位
+	 * @date 2018年10月10日
+	 * @return
+	 */
+	public static String randomUUID36(){
 		return UUID.randomUUID().toString();
 	}
-	
 	/**
 	 * @Description: 日期转字符串
 	 * @date 2018年9月12日

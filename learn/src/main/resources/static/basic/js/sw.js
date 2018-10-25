@@ -1,4 +1,4 @@
-var version = '7.0';
+var version = '1.0';
 // 缓存静态文件
 self.addEventListener('install', function (event) {
     event.waitUntil(

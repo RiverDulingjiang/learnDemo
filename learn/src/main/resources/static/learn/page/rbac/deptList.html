@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style="height:100%;overflow:hidden;">
 <head>
 	<meta charset="utf-8">
 	<title>部门列表</title>
@@ -9,155 +9,268 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="/uiFrame/layui/css/layui.css" media="all" />
-	<link rel="stylesheet" href="../../css/font_eolqem241z66flxr.css" media="all" />
-	<script type="text/javascript" src="/uiFrame/layui/layui.js"></script>
-	<script type="text/javascript" src="/uiFrame/layui/layui.all.js"></script>
-	<script type="text/javascript" src="/basic/js/jquery.js"></script>
-	<script type="text/javascript" src="/basic/js/common.js"></script>
+	<link rel="stylesheet" href="../../../uiFrame/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="../../css/deptpenal.css" media="all" />
+	<script type="text/javascript" src="../../../uiFrame/layui/layui.js"></script>
+	<script type="text/javascript" src="../../../uiFrame/layui/layui.all.js"></script>
+	<script type="text/javascript" src="../../../basic/js/jquery.js"></script>
+	<script type="text/javascript" src="../../../basic/js/common.js"></script>
 	<script type="text/javascript" src="../../js/mylayui.js"></script>
-	
+	<style>
+	.left{
+		width: 220px;
+		height: 100%;
+		border: 1px solid #ddd;
+		float:left;
+		margin: 10px 0;
+		overflow:scroll;
+	}
+	.right{
+		width: calc(100% - 230px );
+		height: 100%;
+		float:left;
+		overflow:scroll;
+	}
+	.tree{
+		display: inline-block;
+		padding: 10px; 
+	}
+	.dept_btn{
+		margin-top: 10px;
+		text-align: right;
+	}
+	.zhezhaoceng{
+		position: fixed;
+		left: 0px;
+		top: 0px;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		user-select: none;
+    	background: rgb(0, 0, 0,0.7); 
+    	z-index: 1027;
+    	display:none;
+    }
+	</style>
 </head>
-<body class="childrenBody">
-	<div><div>https://www.layui.com/demo/tree.html</div></div>
-	<div
-		style="display: inline-block; width: 180px; height: 100%; padding: 10px; border: 1px solid #ddd; overflow: auto;">
-		<ul id="demo1"></ul>
-	</div>
 
+<body class="body_class" style="height:100%;">
+	<div class="left">
+		<div class="tree">
+			<ul id="dept"></ul>
+		</div>
+	</div>
+	<div class="layui-form right">
+		<blockquote class="layui-elem-quote dept_btn">
+			<div class="layui-inline">
+				<a class="layui-btn layui-btn-normal add_btn">添加部门</a>
+				<div style="display:none">
+					<span id="p_dept"></span>
+					<span id="p_code"></span>
+				</div>
+			</div>
+		</blockquote>
+		<div class="tableBox">
+			<table class="layui-table">
+			    <colgroup>
+					<col width="20%">
+					<col width="20%">
+					<col width="20%">
+			    </colgroup>
+			    <thead>
+					<tr>
+						<th style="text-align:left;">部门</th>
+						<th>父部门</th>
+						<th>操作</th>
+					</tr> 
+			    </thead>
+			    <tbody class="dept_content"></tbody>
+			</table>
+		</div>
+		<div id="page" style="display:none"></div>  	
+	</div>
+	<div class="dept_info zhezhaoceng">
+		<div class="zhezhaoceng-penal">
+			<div class="penal-title">
+				修改部门信息
+				<button i="close" class="penal-close" onclick="reset()" title="取消">×</button>
+			</div>
+			<div class="penal-body">
+				<div class="penal-context">
+					<div class="penal-item">
+						<input type="hidden" id="id" readonly/>
+					</div>
+					<div class="penal-item">
+						<span>父部门名称</span>
+						<input type="text" id="pname" readonly />
+					</div>
+					<div class="penal-item">
+						<span>部门名称*</span>
+						<input  type="text" id="name" autocomplete="off"/>
+					</div>
+				</div>				
+			</div>
+			<div class="penal-tip"><span id="prompt"></span></div>
+			<div class="penal-footer">
+				<div id="reset" onclick="save()" class="penal-button">确定</div>
+				<div id="order" onclick="reset()" class="penal-button">取消</div>
+			</div>
+		</div>
+	</div>
 </body>
 <script>
-//初始化函数
-$(function() {
-
-})
-layui.use(['tree', 'layer'], function(){
-	  var layer = layui.layer
-	  ,$ = layui.jquery; 
-	  
-	  layui.tree({
-	    elem: '#demo1' //指定元素
-	    ,target: '_blank' //是否新选项卡打开（比如节点返回href才有效）
-	    ,click: function(item){ //点击节点回调
-	      layer.msg('当前节名称：'+ item.name + '<br>全部参数：'+ JSON.stringify(item));
-	      console.log(item);
-	    }
-	    ,nodes: [ //节点
-	      {
-	        name: '常用文件夹',
-	        id: 1,
-	        alias: 'changyong',
-	        children: [
-	          {
-	            name: '所有未读（设置跳转）',
-	            id: 11,
-	            href: 'http://www.layui.com/',
-	            alias: 'weidu'
-	          }, {
-	            name: '置顶邮件',
-	            id: 12
-	          }, {
-	            name: '标签邮件',
-	            id: 13
-	          }
-	        ]
-	      }, {
-	        name: '我的邮箱',
-	        id: 2,
-	        spread: true,
-	        children: [
-	          {
-	            name: 'QQ邮箱',
-	            id: 21,
-	            spread: true,
-	            children: [
-	              {
-	                name: '收件箱',
-	                id: 211,
-	                children: [
-	                  {
-	                    name: '所有未读',
-	                    id: 2111
-	                  }, {
-	                    name: '置顶邮件',
-	                    id: 2112
-	                  }, {
-	                    name: '标签邮件',
-	                    id: 2113
-	                  }
-	                ]
-	              }, {
-	                name: '已发出的邮件',
-	                id: 212
-	              }, {
-	                name: '垃圾邮件',
-	                id: 213
-	              }
-	            ]
-	          }, {
-	            name: '阿里云邮',
-	            id: 22,
-	            children: [
-	              {
-	                name: '收件箱',
-	                id: 221
-	              }, {
-	                name: '已发出的邮件',
-	                id: 222
-	              }, {
-	                name: '垃圾邮件',
-	                id: 223
-	              }
-	            ]
-	          }
-	        ]
-	      }
-	      ,{
-	        name: '收藏夹',
-	        id: 3,alias: 'changyong',
-	        children: [
-	          {
-	            name: '爱情动作片',
-	            id: 31 ,
-	            alias: 'love'
-	          }, {
-	            name: '技术栈',
-	            id: 12,
-	            children: [
-	              {
-	                name: '前端',
-	                id: 121
-	              }
-	              ,{
-	                name: '全端',
-	                id: 122
-	              }
-	            ]
-	          }
-	        ]
-	      }
-	    ]
-	  });	  
-	});
-/* layui.tree({
-	elem : '#demo' //传入元素选择器
-	,
-	nodes : [ { //节点
-		name : '父节点1',
-		children : [ {
-			name : '子节点11'
+	//初始化函数
+	$(function() {
+		//树形数据
+		tree();
+		//默认展示顶级菜单部门
+		getChildren("root");
+		//分页渲染
+		page();
+	})
+	//树形数据
+	function tree(){
+		requestGet("/api/dept/tree", {}, {
+			success : function(data) {
+				if (data.code == 0) {
+					//清除老树形
+					$("#dept").html("");
+					//渲染
+					treeStyle(data.data);
+				}
+			}
+		});
+	}
+	//树形结构样式渲染
+	function treeStyle(data) {
+		layui.use([ 'tree', 'layer' ], function() {
+			var layer = layui.layer, $ = layui.jquery;
+			layui.tree({
+				elem : '#dept', //指定元素
+				target : '_blank', //是否新选项卡打开（比如节点返回href才有效）
+				click : function(item) { //点击节点回调
+					console.log(item);
+					getChildren(item.code);
+				},
+				nodes : data
+			});
+		});
+	}
+	//获取该节点下子节点内容
+	function getChildren(parent){
+		$(".dept_content").empty();
+		requestGet("/api/dept/children/"+parent, {
+			parent:parent
 		}, {
-			name : '子节点12'
-		} ]
-	}, {
-		name : '父节点2（可以点左侧箭头，也可以双击标题）',
-		children : [ {
-			name : '子节点21',
-			children : [ {
-				name : '子节点211'
-			} ]
-		} ]
-	} ]
-}); */
+			success : function(data) {
+				if (data.code == 0) {
+					//查询子节点
+					for(var i=0;i<data.data.length;i++){
+						var depts = data.data[i];
+						$("#p_dept").text(depts.name);
+						$("#p_code").text(depts.code);
+						if(depts.hasOwnProperty("children")){
+							var dept = depts.children;
+							var dataHtml="";
+							for(var i=0;i<dept.length;i++){
+								dataHtml += '<tr>'
+									+ '<td class="dept_name">'+dept[i].name+'</td>'
+									+ '<td align="left"><span>' + depts.name + '</span><span style="display:none">'+depts.code+'</span></td>'
+									+ '<td><a class="layui-btn layui-btn-mini btn_edit" data-id="'+ dept[i].id+'"><i class="iconfont icon-edit "></i> 编辑</a>'
+									+ '<a class="layui-btn layui-btn-danger layui-btn-mini btn_del" data-id="'+ dept[i].id+'"><i class="layui-icon icon-del">&#xe640;</i> 删除</a>'
+									+ '</td>'
+									+ '</tr>';
+							}
+							$(".dept_content").append(dataHtml);
+						}
+					} 
+				}
+			}
+		});
+	}
+	//添加按钮监听器
+	$("body").on("click", ".add_btn", function() {
+		$("#pname").val($("#p_dept").text());
+		$(".zhezhaoceng").show();
+	})
+	//编辑按钮监听器
+	$("body").on("click", ".btn_edit", function() {
+		$("#id").val($(this).attr("data-id"));
+		$("#pname").val($("#p_dept").text());
+		$("#name").val($(this).parent().siblings(".dept_name").text());
+		$(".zhezhaoceng").show();
+	})
+	//删除按钮监听器
+	$("body").on("click", ".btn_del", function() {
+		var bean={};
+		bean.id =$(this).attr("data-id");
+		bean.delFlag =0;
+		putRequest(bean);
+	})
+	//取消功能
+	function reset(){
+		$(".penal-body input").val("");
+		$(".zhezhaoceng").hide();
+	}
+	//保存与修改功能
+	function save(){
+		var bean={};
+		bean.id =$("#id").val();
+		bean.name =$("#name").val();
+		bean.pname =$("#pname").val();
+		bean.parent =$("#p_code").text();
+		if (bean.id == undefined||bean.id == "") {
+			//保存数据
+			postRequest(bean);
+		}else{
+			//修改数据
+			putRequest(bean);
+		}
+			
+	}
+	//保存请求
+	function postRequest(bean){
+		requestPost("/api/dept",JSON.stringify(bean),{
+			success :function(data){
+				if(data.code==0){
+					layer.msg("新增成功");
+					//刷新树形
+					tree();
+					//刷新页面
+					getChildren($("#p_code").text());
+					$(".zhezhaoceng").hide();
+				}
+			}
+		});
+	}
+	//修改请求
+	function putRequest(bean){
+		requestPut("/api/dept",JSON.stringify(bean),{
+			success :function(data){
+				if(data.code==0){
+					layer.msg("修改成功");
+					//刷新树形
+					tree();
+					//刷新页面
+					getChildren($("#p_code").text());
+					$(".zhezhaoceng").hide();
+				}
+			}
+		});
+	}
+	//总页数大于页码总数
+	function page(count,data){
+		layui.use(['laypage', 'layer'], function(){
+			var laypage = layui.laypage,layer = layui.layer;
+			//总页数大于页码总数
+			laypage.render({
+			    elem: 'page',
+			    count: count, //数据总数
+			    jump: function(obj){
+			      	console.log(obj);
+			    }
+			});
+		})  
+	}
 </script>
 </html>

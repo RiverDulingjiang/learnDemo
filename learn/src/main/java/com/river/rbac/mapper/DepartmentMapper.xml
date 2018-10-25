@@ -2,8 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.river.rbac.mapper.DepartmentMapper">
 
-	<!-- 按条件查询 -->
-	<select id="selectDeptList" resultType="java.util.HashMap">
-		SELECT * FROM t_department
+	<!-- 查询所有部门 -->
+	<select id="getDeptList" resultType="java.util.HashMap">
+		SELECT id,name,code,parent FROM t_department WHERE delFlag = 1
 	</select>
+	<!-- 查询子部门 -->
+	<select id="getChildDept" resultType="com.river.rbac.bean.DepartmentBean" parameterType="java.lang.String" >
+		SELECT * FROM t_department WHERE delFlag = 1 AND (parent =#{parent} OR code=#{parent})
+	</select>
+	<!-- 查询部门 -->
+	<select id="getDeptById" resultType="com.river.rbac.bean.DepartmentBean" parameterType="java.lang.String">
+		SELECT * FROM t_department WHERE id=#{id}
+	</select>
+	<!-- 新增部门 -->
+	<insert id="postDept" parameterType="com.river.rbac.bean.DepartmentBean">
+		INSERT INTO t_department 
+			(id,name,sname,code,parent,pname,delFlag,createBy,createTime)
+		VALUES
+			(#{id},#{name},#{sname},#{code},#{parent},#{pname},#{delFlag},#{createBy},#{createTime})
+	</insert>
+	<update id="putDept" parameterType="com.river.rbac.bean.DepartmentBean">
+		UPDATE t_department SET updateTime = NOW(),updateBy=#{updateBy}
+		<if test="name != null and name !=''">, name=#{name}</if>
+		<if test="sname != null and sname !=''">, sname=#{sname}</if>
+		<if test="parent != null and parent !=''">, parent=#{parent}</if>
+		<if test="pname != null and pname !=''">, pname=#{pname}</if>
+		<if test="delFlag != null">, delFlag=#{delFlag}</if>
+		WHERE id=#{id}
+	</update>
 </mapper>

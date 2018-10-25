@@ -3,7 +3,7 @@
 <mapper namespace="com.river.learn.basic.mapper.DataBaseMapper">
 
 	<!-- 按条件查询列表 -->
-	<select id="getDataBases" resultType="com.river.learn.basic.bean.DataBaseBean">
+	<select id="getDataBases" resultType="com.river.learn.basic.bean.DataBaseBean" parameterType="com.river.learn.basic.bean.DataBaseBean">
 		SELECT * FROM t_database WHERE 1=1
 		<if test="name !=null and name!=''">AND name=#{name}</if>
 		<if test="flag !=null and flag!=''">AND flag=#{flag}</if>

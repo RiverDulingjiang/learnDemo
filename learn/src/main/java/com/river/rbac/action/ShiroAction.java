@@ -12,6 +12,11 @@ import com.river.rbac.ShiroSessionListener;
 @RequestMapping("/api/shiro")
 public class ShiroAction {
 	
+	/**
+	 * @Description: 统计在线人数
+	 * @date 2018年10月8日
+	 * @return
+	 */
 	@RequestMapping("/onlineCount")
 	@ResponseBody
 	public ResponseBean<?> onlineCount(){

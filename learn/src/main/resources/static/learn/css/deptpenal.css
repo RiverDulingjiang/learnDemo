@@ -1,0 +1,100 @@
+.zhezhaoceng-penal {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	min-width: 500px;
+	min-height: 400px;
+	background-color: #fff;
+	border-radius: 5px;
+}
+
+.penal-title {
+	padding: 15px;
+	font-size: 16px;
+	border-bottom: 1px solid #ccc;
+	font: 14px Helvetica Neue, Helvetica, PingFang SC, \5FAE\8F6F\96C5\9ED1,
+		Tahoma, Arial, sans-serif;
+	font-weight: bold;
+}
+
+.penal-close {
+	position: relative;
+	_position: absolute;
+	float: right;
+	top: 0;
+	right: 13px;
+	_height: 26px;
+	padding: 0 4px;
+	font-size: 21px;
+	font-weight: bold;
+	line-height: 1;
+	color: #000;
+	text-shadow: 0 1px 0 #FFF;
+	opacity: .2;
+	filter: alpha(opacity = 20);
+	cursor: pointer;
+	background: transparent;
+	_background: #FFF;
+	border: 0;
+	-webkit-appearance: none;
+}
+
+.penal-body {
+	padding: 15px;
+}
+
+.penal-context {
+	padding-top: 31px;
+}
+
+.penal-item {
+	padding-bottom: 20px;
+}
+
+.penal-item>span {
+	width: 20%;
+	min-width: 80px;
+	display: inline-block;
+	font-size: 15px;
+	padding-left: 10px;
+}
+
+.penal-item>input {
+	/*  width: calc(100% - 88px); */
+	width: 65%;
+	height: 30px;
+	border-radius: 6px;
+	padding-left: 5px;
+}
+
+.penal-footer {
+	position: absolute;
+	bottom: 0;
+	height: 50px;
+    width: 100%;
+    text-align: center;
+}
+
+.penal-button {
+	display: inline-block;
+    cursor: pointer;
+    background-color: #ccc;
+    text-align: center;
+    border: 1px solid #ccc;
+    width: 70px;
+    line-height: 30px;
+    border-radius: 5px;
+    margin-left: 25px;
+}
+
+.penal-footer>div:nth-child(2) {
+	color: #ffffff;
+	background-color: #fc651f;
+}
+
+.penal-tip {
+	position: absolute;
+	bottom: 53px;
+	left: 72px;
+}

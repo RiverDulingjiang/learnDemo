@@ -87,7 +87,7 @@
 		//var password =$("#password").val();
 		var rememberMe=false;
 		var account ="admin";
-		var password ="123456"		
+		var password ="123456";	
 		commitData("/api/login",{
 				account:account,
 				password:password,
@@ -97,7 +97,7 @@
 					$(".tip_text").text("提示："+data.desc);
 				}
 				if(data.code==0){
-					top.location.href="../learn/index.html";
+					top.location.href=ctx + "/learn/index.html";
 				}
 			}
 		});
