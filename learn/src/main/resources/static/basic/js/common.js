@@ -56,7 +56,7 @@ function commitData(url, data, callbackfun, async, method, dataType,contentType)
 		success : function(data) {
 			if(callbackfun.success) {
 				if(data.code==1000){//跳转到登陆页面
-					top.location.href = "/login.html"
+					top.location.href = ctx + "/login.html";
 				}else{
 					callbackfun.success(data);
 				}
