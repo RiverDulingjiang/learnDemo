@@ -19,7 +19,7 @@
 		INSERT INTO t_department 
 			(id,name,sname,code,parent,pname,delFlag,createBy,createTime)
 		VALUES
-			(#{id},#{name},#{sname},#{code},#{parent},#{pname},#{delFlag},#{createBy},#{createTime})
+			(#{id},#{name},#{sname},#{code},#{parent},#{pname},#{delFlag},#{createBy},NOW())
 	</insert>
 	<update id="putDept" parameterType="com.river.rbac.bean.DepartmentBean">
 		UPDATE t_department SET updateTime = NOW(),updateBy=#{updateBy}

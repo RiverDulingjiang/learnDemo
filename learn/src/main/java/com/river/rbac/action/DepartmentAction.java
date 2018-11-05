@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.river.basic.Constant;
 import com.river.basic.ResponseBean;
+import com.river.basic.UserSession;
 import com.river.rbac.bean.DepartmentBean;
+import com.river.rbac.bean.UserBean;
 import com.river.rbac.service.DepartmentService;
 
 @RestController
@@ -86,7 +88,8 @@ public class DepartmentAction {
 		return res;
 	}
 	@PostMapping(value = "/dept")
-	public ResponseBean<?> postDept(@RequestBody DepartmentBean bean){
+	public ResponseBean<?> postDept(@UserSession(Constant.LOGIN_USER_SESSION)UserBean user,@RequestBody DepartmentBean bean){
+		bean.setCreateBy(user.getId());
 		ResponseBean<String> res = new ResponseBean<>();
 		String id = departmentService.postDept(bean);
 		res.setCode(Constant.RESULT_SUCCESS);
@@ -101,7 +104,8 @@ public class DepartmentAction {
 	 * @return
 	 */
 	@PutMapping(value = "/dept")
-	public ResponseBean<?> putDept(@RequestBody DepartmentBean bean){
+	public ResponseBean<?> putDept(@UserSession(Constant.LOGIN_USER_SESSION)UserBean user,@RequestBody DepartmentBean bean){
+		bean.setUpdateBy(user.getId());
 		ResponseBean<String> res = new ResponseBean<>();
 		departmentService.putDept(bean);
 		res.setCode(Constant.RESULT_SUCCESS);
