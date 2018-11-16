@@ -10,13 +10,13 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="format-detection" content="telephone=no">
-<link rel="stylesheet" href="/uiFrame/layui/css/layui.css" media="all" />
-<script type="text/javascript" src="/uiFrame/layui/layui.js"></script>
-<!-- <script type="text/javascript" src="/uiFrame/layui/lay/dest/layui.all.js"></script> -->
-<script type="text/javascript" src="/uiFrame/layui/layui.all.js"></script>
-<script type="text/javascript" src="/basic/js/jquery.js"></script>
-<script type="text/javascript" src="/basic/js/common.js"></script>
-<script type="text/javascript" src="../../js/mylayui.js"></script>
+	<link rel="stylesheet" href="../../../uiFrame/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="../../css/font_eolqem241z66flxr.css" media="all" />
+	<script type="text/javascript" src="../../../basic/js/jquery.js"></script>
+	<script type="text/javascript" src="../../../uiFrame/layui/layui.js"></script>
+	<script type="text/javascript" src="../../../uiFrame/layui/layui.all.js"></script>
+	<script type="text/javascript" src="../../../basic/js/common.js"></script>
+	<script type="text/javascript" src="../../js/mylayui.js"></script>
 <style type="text/css">
 .quote_title{
 	height:35px;
@@ -25,7 +25,12 @@
 	float:right;
 	padding-right: 10px;
 }
-
+.form_size{
+    width: 50%;
+}
+.layui-inline {
+    margin-bottom: 15px;
+}
 </style>
 </head>
 <body>
@@ -41,40 +46,72 @@
 		</div>
 	</blockquote>
 	<div class="data">
-		<form action="">
-			<div>
-				<input id="id" type="hidden"></input>
+		<form class="layui-form form_size" action="" lay-filter="userInfo">
+			 <div class="layui-form-item">
+			    <label class="layui-form-label">姓名*</label>
+			    <div class="layui-input-block">
+			      <input type="text" id="name"required  lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+			    </div>
+			 </div>
+			 <div class="layui-form-item">
+			    <label class="layui-form-label">账户*</label>
+			    <div class="layui-input-block">
+			      <input type="text" id="account" required  lay-verify="required" placeholder="请输入登录账户" autocomplete="off" class="layui-input">
+			    </div>
+			 </div>
+			<div class="layui-form-item">
+			    <label class="layui-form-label">性别*</label>
+			    <div class="layui-input-block">
+			      <input type="radio" id="nan" name="sex" value="0" title="男" checked="">
+			      <input type="radio" id="nu" name="sex" value="1" title="女" >
+			    </div>
 			</div>
-			<div class="cell">
-				<span class="text">姓名：</span> <input id="name"  type="text"></input>
+			<div class="layui-form-item">
+			    <label class="layui-form-label">部门*</label>
+			    <div class="layui-input-block">
+			      <input type="text" id="department"  required  lay-verify="required" placeholder="" autocomplete="off" class="layui-input" readOnly>
+			    </div>
 			</div>
-			<div class="cell">
-				<span class="text">用户名：</span> <input id="account" type="text"></input>
-			</div>
-			<div class="cell">
-				<span class="text">性别：</span> <input id="sex" type="text"></input>
-			</div>
-			<div class="cell">
-				<span class="text">部门：</span> <input id="department" type="text"></input></input>
-			</div>
-			<div class="cell">
-				<span class="text">状态：</span> <input id="status" type="text"></input></input>
-			</div>
-			<div class="cell">
-				<span class="text">创建时间：</span> <input id="createTime" type="text"></input>
-			</div>
-			<div class="cell">
-				<span class="text">更新时间：</span> <input id="updateTime" type="text"></input>
-			</div>
+			<div class="layui-inline">
+		       <label class="layui-form-label">状态</label>
+		       <div class="layui-input-inline">
+		        <select id="status" lay-verify="required" lay-search="">
+		          <option value="">选择职工状态</option>
+		          <option value="1">在职</option>
+		          <option value="2">离职</option>
+		          <option value="3">退休</option>
+		        </select>
+		      </div>
+		    </div>
+		    <div class="layui-form-item">
+			    <label class="layui-form-label">创建时间</label>
+			    <div class="layui-input-block">
+			      <input type="text" id="createTime"  required  lay-verify="required" placeholder="请输入登录账户" autocomplete="off" class="layui-input" readOnly>
+			    </div>
+			 </div><div class="layui-form-item">
+			    <label class="layui-form-label">更新时间</label>
+			    <div class="layui-input-block">
+			      <input type="text" id="updateTime"  required  lay-verify="required" placeholder="请输入登录账户" autocomplete="off" class="layui-input" readOnly>
+			    </div>
+			 </div>
 		</form>
-	</div>
-	<div><button class="sumbit_bnt" value="sumbit">提交</button></div>
 </body>
 
 <script>
+var form ="";
+var id ="";
 //初始化界面
-$(function(){
-	getUrlField();
+$(function() {
+	id = getUrlField("id");
+	layui.use([ 'form' ], function() {
+		form = layui.form, layer = layui.layer;
+		//表单初始赋值
+		form.val('userInfo', {
+			"close" : true //开关状态
+			,"sex" : 0
+		})
+	});
+	query(id);
 })
 
 //关闭界面
@@ -84,31 +121,76 @@ $("body").on("click", ".userBack_btn", function() {
 
 //新增
 $("body").on("click", ".sumbit_bnt", function() {
-	var bean ={};
-	bean.id=$("#id").val();
-	bean.name=$("#name").val();
-	bean.account=$("#account").val();
-	bean.sex=$("#sex").val();
-	bean.department=$("#department").val();
-	bean.status=$("#status").val();
-	requestPost("/api/rbac/userInfo",JSON.stringify(bean),{success :function(data){
-		if(data.code==0){
-			layer.msg("新增成功");
-			query(data.data);
+	var bean = {};
+	bean.id = $("#id").val();
+	bean.name = $("#name").val();
+	bean.account = $("#account").val();
+	bean.sex = $("#sex").val();
+	bean.department = $("#department").val();
+	bean.status = $("#status").val();
+	requestPost("/api/rbac/userInfo", JSON.stringify(bean), {
+		success : function(data) {
+			if (data.code == 0) {
+				layer.msg("新增成功");
+				query(data.data);
+			}
+		}
+	});
+})
+//修改
+$("body").on("click", ".userSave_btn", function() {
+	if(id==""){
+		return;
+	}
+	var bean = {};
+	bean.id = id;
+	bean.name = $("#name").val();
+	bean.account = $("#account").val();
+	bean.sex = $("#sex").val();
+	if($(".layui-form-radio").is('.layui-form-radioed')){
+		var sexName = $(".layui-form-radioed").find("i").text();
+		if(sexName=="男"){
+			bean.sex = false;
+		}else{
+			bean.sex = true;
 		}
 	}
+	
+	bean.department = $("#department").val();
+	bean.status = $("#status").val();
+	requestPut("/api/rbac/userInfo", JSON.stringify(bean), {
+		success : function(data) {
+			if (data.code == 0) {
+				query(data.data);
+				layer.msg("修改成功");
+			}
+		}
 	});
 })
 //查询
-function query(id){
-	requestPost("/api/rbac/userInfo/"+id,{
-		id:id
-	},{success :function(data){
-	if(data.code==0){
-		layer.msg("查询成功");
+function query(id) {
+	var sex =1;
+	requestGet("/api/rbac/userInfo/" + id, {
+		id : id
+	}, {
+		success : function(data) {
+			if (data.code == 0) {
+				for ( var key in data.data) {
+					var keys = "#" + key;
+					$(keys).val(data.data[key]);
+					if (key == "status") {
+						var text = $("#status  option:selected").text();
+						$("#status").siblings(".layui-form-select").find("input").val(text);
+					}
+					if(key == "sex"){
+						if(data.data[key]){
+							 //$("#nan").removeAttr("checked");
+						}
+					}
+				}
+			}
+		}
+		});
 	}
-}
-});
-}
 </script>
 </html>

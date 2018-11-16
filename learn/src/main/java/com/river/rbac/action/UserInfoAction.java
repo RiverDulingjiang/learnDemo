@@ -26,6 +26,12 @@ public class UserInfoAction {
 	@Autowired
 	private UserInfoService userInfoService;
 	
+	/**
+	 * @Description: 获取用户详情列表
+	 * @date 2018年11月5日
+	 * @param bean
+	 * @return
+	 */
 	@GetMapping(value = "/userInfo")
 	public ResponseBean<?> getUserInfos(UserInfoBean bean){
 		DSIdentification.setIdentification(Constant.DATABASIC_RBAC);
@@ -36,6 +42,12 @@ public class UserInfoAction {
 		res.setDesc("获取用户信息成功");
 		return res;
 	}
+	/**
+	 * @Description: 获取用户详情条目
+	 * @date 2018年11月5日
+	 * @param id
+	 * @return
+	 */
 	@GetMapping(value = "/userInfo/{id}")
 	public ResponseBean<?> getUserInfoById(@PathVariable("id") String id){
 		DSIdentification.setIdentification(Constant.DATABASIC_RBAC);
@@ -46,8 +58,15 @@ public class UserInfoAction {
 		res.setDesc("获取用户信息成功");
 		return res;
 	}
-	@PutMapping(value = "/userInfo/{id}")
-	public ResponseBean<?> putUserInfoById(@PathVariable("id") String id,UserInfoBean bean){
+	/**
+	 * @Description: 修改用户详情
+	 * @date 2018年11月5日
+	 * @param id
+	 * @param bean
+	 * @return
+	 */
+	@PutMapping(value = "/userInfo")
+	public ResponseBean<?> putUserInfoById(@RequestBody UserInfoBean bean){
 		DSIdentification.setIdentification(Constant.DATABASIC_RBAC);
 		ResponseBean<UserInfoBean> res = new ResponseBean<>();
 		userInfoService.putUserInfo(bean);
@@ -64,6 +83,12 @@ public class UserInfoAction {
 		res.setDesc("删除用户信息成功");
 		return res;
 	}
+	/**
+	 * @Description: 添加用户详情
+	 * @date 2018年11月5日
+	 * @param bean
+	 * @return
+	 */
 	@PostMapping(value = "/userInfo")
 	public ResponseBean<?> postUserInfoById(@RequestBody UserInfoBean bean){
 		DSIdentification.setIdentification(Constant.DATABASIC_RBAC);

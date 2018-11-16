@@ -22,7 +22,7 @@ public class UserInfoBean {
 	/**
 	 * 性别
 	 */
-	private String sex;
+	private Boolean sex;
 	/**
 	 * 部门
 	 */
@@ -57,10 +57,10 @@ public class UserInfoBean {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getSex() {
+	public Boolean getSex() {
 		return sex;
 	}
-	public void setSex(String sex) {
+	public void setSex(Boolean sex) {
 		this.sex = sex;
 	}
 	public String getDepartment() {
